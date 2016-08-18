@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="sortListArray">
+        <item>@string/settings_view_sort_by_name</item>
+        <item>@string/settings_view_sort_by_name_folder_first</item>
+        <item>@string/settings_view_sort_by_name_file_first</item>
+        <item>@string/settings_view_sort_by_change_old_first</item>
+        <item>@string/settings_view_sort_by_change_new_first</item>
+        <item>@string/settings_view_sort_by_size_small_first</item>
+        <item>@string/settings_view_sort_by_size_big_first</item>
+    </string-array>
+
+    <string-array name="sortListValues" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+    </string-array>
+
+    <string-array name="textviewer_font_sizeListArray">
+        <item>@string/textviewer_font_size_big</item>
+        <item>@string/textviewer_font_size_medium</item>
+        <item>@string/textviewer_font_size_small</item>
+        <item>@string/textviewer_font_size_verysmall</item>
+    </string-array>
+
+    <string-array name="textviewer_font_sizeListValues" translatable="false">
+        <item>22</item>
+        <item>18</item>
+        <item>14</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="terminal_font_sizeListArray">
+        <item>@string/textviewer_font_size_medium</item>
+        <item>@string/textviewer_font_size_small</item>
+        <item>@string/textviewer_font_size_verysmall</item>
+    </string-array>
+
+    <string-array name="terminal_font_sizeListValues" translatable="false">
+        <item>18</item>
+        <item>14</item>
+        <item>10</item>
+    </string-array>
+
+    <string-array name="settings_crypto_key_lenght_ListArray">
+        <item>@string/settings_crypto_key_lenght_128_bit</item>
+        <item>@string/settings_crypto_key_lenght_256_bit</item>
+    </string-array>
+
+    <string-array name="settings_crypto_key_lenght_ListValues" translatable="false">
+        <item>128</item>
+        <item>256</item>
+    </string-array>
+
+    <string-array name="rootTimeListArray">
+        <item>@string/settings_root_test_root_time_3s</item>
+        <item>@string/settings_root_test_root_time_5s</item>
+        <item>@string/settings_root_test_root_time_7s</item>
+    </string-array>
+
+    <string-array name="rootTimeListValues" translatable="false">
+        <item>3</item>
+        <item>5</item>
+        <item>7</item>
+    </string-array>
+
+    <string-array name="zipCompressArray">
+        <item>@string/zip_dialog_compress_fast</item>
+        <item>@string/zip_dialog_compress_normal</item>
+        <item>@string/zip_dialog_compress_max</item>
+        <item>@string/zip_dialog_compress_no</item>
+    </string-array>
+
+    <integer-array name="zipCompressValues">
+        <item>1</item>
+        <item>5</item>
+        <item>9</item>
+        <item>0</item>
+    </integer-array>
+
+    <string-array name="encryptMethodsArray">
+        <item>@string/zip_dialog_encrypt_standart</item>
+        <item>@string/zip_dialog_encrypt_aes_128</item>
+        <item>@string/zip_dialog_encrypt_aes_256</item>
+    </string-array>
+
+    <integer-array name="encryptMethodsValues">
+        <item>0</item>
+        <item>128</item>
+        <item>256</item>
+    </integer-array>
+
+    <string-array name="zipSplitArray">
+        <item>@string/zip_dialog_split_no</item>
+        <item>@string/zip_dialog_split_64kb</item>
+        <item>@string/zip_dialog_split_1mb</item>
+    </string-array>
+
+    <integer-array name="zipSplitValues">
+        <item>0</item>
+        <item>65536</item>
+        <item>1048576</item>
+    </integer-array>
+
+    <string-array name="createActionsArray" >
+        <item>@string/create_dialog_new_file</item>
+        <item>@string/create_dialog_new_dir</item>
+    </string-array>
+
+</resources>

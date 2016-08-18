@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".WorkFiles">
+    <item android:id="@+id/work_files_menu_acrh" android:title="@string/work_files_menu_acrh"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/work_files_menu_crypto" android:title="@string/work_files_menu_crypto"
+        android:orderInCategory="100" android:showAsAction="never" />
+</menu>

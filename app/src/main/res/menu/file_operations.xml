@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:id="@+id/menugroup1" >
+        <item
+            android:id="@+id/file_operations_rename"
+            android:title="@string/file_operations_rename"/>
+        <item
+            android:id="@+id/file_operations_copy"
+            android:title="@string/file_operations_copy"/>
+        <item
+            android:id="@+id/file_operations_move"
+            android:title="@string/file_operations_move"/>
+        <item
+            android:id="@+id/file_operations_delete"
+            android:title="@string/file_operations_delete"/>
+        <item
+            android:id="@+id/file_operations_open_in_textviewer"
+            android:title="@string/file_operations_open_in_textviewer"/>
+        <item
+            android:id="@+id/file_operations_open_in_texteditor"
+            android:title="@string/file_operations_open_in_texteditor"/>
+        <item
+            android:id="@+id/file_operations_zip"
+            android:title="@string/file_operations_zip"/>
+        <item
+            android:id="@+id/file_operations_unzip"
+            android:title="@string/file_operations_unzip"/>
+        <item
+            android:id="@+id/file_operations_encrypt"
+            android:title="@string/file_operations_encrypt"/>
+        <item
+            android:id="@+id/file_operations_decrypt"
+            android:title="@string/file_operations_decrypt"/>
+        <item
+            android:id="@+id/file_operations_properties"
+            android:title="@string/properties"/>
+        <item
+            android:id="@+id/file_operations_permissions"
+            android:title="@string/permissions"/>
+    </group>
+</menu>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/help8_work_files"
+                android:layout_gravity="center"
+                android:textColor="@color/scorpio_yellow"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:paddingBottom="10dp" />
+
+        </TableRow>
+
+        <View
+            android:layout_height="@dimen/separator0_height"
+            android:background="@color/blue_sky" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/help8_work_files_more"
+                android:textColor="@color/scorpio_yellow"
+                android:textStyle="bold|italic"
+                android:password="false"
+                android:padding="10dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/intro8_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:adjustViewBounds="true"
+                android:padding="10dp" />
+
+        </TableRow>
+
+        <View
+            android:layout_height="@dimen/separator0_height"
+            android:background="@color/blue_sky" />
+
+    </TableLayout>
+
+
+
+</LinearLayout>

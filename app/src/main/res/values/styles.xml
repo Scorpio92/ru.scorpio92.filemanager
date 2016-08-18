@@ -1,0 +1,128 @@
+<resources>
+
+    <style name="ActionBar" parent="@android:style/Widget.Holo.ActionBar.Solid">
+        <item name="android:background">@color/scorpio_yellow</item>
+        <item name="android:textColorSecondary">@android:color/black</item>
+        <item name="android:indeterminateProgressStyle">@style/ProgressBarStyle</item>
+    </style>
+
+    <style name="AlertDialog_Theme.windowTitleStyle" >
+        <item name="android:textColor">@color/scorpio_yellow</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="AlertDialog_Theme.Button.Borderless" parent="@android:style/Widget.Holo.Button.Borderless">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textAppearance">@style/TextAppearance.AlertDialog_Theme.DialogButton</item>
+    </style>
+
+    <style name="AlertDialog_Style">
+        <item name="android:fullDark">@android:color/black</item>
+        <item name="android:topDark">@android:color/black</item>
+        <item name="android:centerDark">@android:color/black</item>
+        <item name="android:bottomDark">@android:color/black</item>
+        <item name="android:fullBright">@android:color/black</item>
+        <item name="android:topBright">@android:color/black</item>
+        <item name="android:centerBright">@android:color/black</item>
+        <item name="android:bottomBright">@android:color/black</item>
+        <item name="android:bottomMedium">@android:color/black</item>
+        <item name="android:centerMedium">@android:color/black</item>
+    </style>
+
+    <style name="TextAppearance.AlertDialog_Theme.DialogButton" parent="@android:style/TextAppearance.Holo.Medium">
+
+    </style>
+
+    <style name="AlertDialog_Theme.ButtonBar.AlertDialog" parent="@android:style/Holo.ButtonBar.AlertDialog">
+        <item name="android:background">@drawable/custom_button_style</item>
+    </style>
+
+    <style name="TextAppearance.AlertDialog_Theme.Medium" parent="@android:style/TextAppearance.Holo.Medium">
+        <item name="android:textStyle">italic</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+
+    <style name="Widget.TextView.ListSeparator" parent="@android:style/Widget.TextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="PreferenceListHeader" parent="Widget.TextView.ListSeparator">
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:background">@color/scorpio_yellow</item>
+        <item name="android:paddingTop">6dp</item>
+        <item name="android:paddingBottom">6dp</item>
+        <item name="android:paddingLeft">12dp</item>
+    </style>
+
+    <style name="ActionBar.TabView" parent="android:style/Widget.Holo.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_bar_background</item>
+    </style>
+
+    <style name="DropDownListViewStyle" parent="@android:style/Widget.ListView">
+        <item name="android:divider">@color/scorpio_yellow</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="PopupMenuStyle" parent="@android:style/Widget.Holo.PopupMenu">
+        <item name="android:listSelector">@drawable/custom_dropdown_row_selector</item>
+        <item name="android:divider">@color/scorpio_yellow</item>
+        <item name="android:dividerHeight">1dp</item>
+    </style>
+
+    <style name="TextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="EditTextStyle" parent="android:Widget.EditText">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">italic</item>
+    </style>
+
+    <style name="CheckBoxStyle" parent="android:Widget.CompoundButton.CheckBox">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textStyle">italic</item>
+        <!--<item name="android:button">@drawable/custom_checkbox</item>-->
+    </style>
+
+    <style name="SpinnerStyle" parent="android:Widget.Holo.Spinner">
+
+    </style>
+
+    <style name="ActionButtonOverflow" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_menu</item>
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+        <item name="android:contentDescription">"Lala"</item>
+    </style>
+
+    <style name="ProgressBarStyle" parent="android:Widget.ProgressBar">
+        <item name="android:indeterminateDrawable">@drawable/circle_progressbar</item>
+        <item name="android:minWidth">@dimen/circle_progressbar_width_height</item>
+        <item name="android:maxWidth">@dimen/circle_progressbar_width_height</item>
+        <item name="android:minHeight">@dimen/circle_progressbar_width_height</item>
+        <item name="android:maxHeight">@dimen/circle_progressbar_width_height</item>
+    </style>
+
+    <style name="ProgressBarHorizontalStyle" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:progressDrawable">@drawable/horizontal_progressbar</item>
+        <item name="android:minHeight">@dimen/horizontal_progressbar_height</item>
+        <item name="android:maxHeight">@dimen/horizontal_progressbar_height</item>
+    </style>
+
+    <style name="ButtonStyle" parent="android:Widget.Button">
+        <item name="android:background">@drawable/custom_button_style</item>
+    </style>
+
+    <style name="ImageButtonStyle" parent="android:Widget.ImageButton">
+        <item name="android:background">@drawable/custom_button_style</item>
+    </style>
+
+</resources>

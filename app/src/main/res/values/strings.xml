@@ -1,0 +1,291 @@
+<resources>
+    <string name="app_name">FileManager</string>
+    <string name="action_menu_settings">Настройки</string>
+    <string name="it_is_not_dirrectory">Это не директория!</string>
+    <string name="it_is_root_directory">Это корневая директория!</string>
+    <string name="file_operations_copy">Копировать</string>
+    <string name="file_operations_delete">Удалить</string>
+    <string name="file_operations_rename">Переименовать</string>
+    <string name="file_operations_move">Переместить</string>
+    <string name="rename_dialog_tittle">Переименование файла</string>
+    <string name="rename_dialog_name_input">Введите новое имя файла</string>
+    <string name="rename_dialog_positive_button">Переименовать</string>
+    <string name="empty_input_warning">Вы ничего не ввели!</string>
+    <string name="negative_button">Отмена</string>
+    <string name="error_rename">Не удалось переименовать объект!</string>
+    <string name="operation_result_fail">Ошибка при выполнении операции</string>
+    <string name="operation_result_success">Операция успешно выполнена</string>
+    <string name="file_operations_delete_complete">Удалено</string>
+    <string name="delete_dialog_body">Удалить выделенные файлы?</string>
+    <string name="delete_dialog_tittle">Удаление файлов</string>
+    <string name="delete_dialog_positive_button">Удалить</string>
+    <string name="horizontal_progress_dialog_tittle">Ход выполнения</string>
+    <string name="horizontal_progress_dialog_body">Прогресс текущей операции</string>
+    <string name="copy_dialog_tittle">Копирование</string>
+    <string name="copy_dialog_body">Копировать выбранные объекты?</string>
+    <string name="copy_dialog_positive_button">Копировать</string>
+    <string name="additional_panel_paste">Вставить</string>
+    <string name="file_operations_copy_complete">Скопировано</string>
+    <string name="move_dialog_tittle">Перемещение</string>
+    <string name="move_dialog_body">Переместить выделенные объекты?</string>
+    <string name="move_dialog_positive_button">Переместить</string>
+    <string name="additional_panel_move">Переместить сюда</string>
+    <string name="file_operations_duplicate_appendix" translatable="false">-copy</string>
+    <string name="action_menu_search">Поиск файлов</string>
+    <string name="action_menu_about">О программе</string>
+    <string name="action_menu_exit">Выход</string>
+    <string name="settings_view_category">Настройки представления</string>
+    <string name="settings_view_sort_by_name">По имени</string>
+    <string name="settings_view_sort_by_name_folder_first">По имени (сначала папки)</string>
+    <string name="settings_view_sort_by_change_new_first">По дате изменения (по убыв.)</string>
+    <string name="settings_view_sort_by_change_old_first">По дате изменения (по возр.)</string>
+    <string name="settings_view_sort_by_size_small_first">По размеру (сначала маленькие)</string>
+    <string name="settings_view_sort_by_size_big_first">По размеру (сначала большие)</string>
+    <string name="settings_view_sort">Настройка сортировки</string>
+    <string name="settings_view_sort_summary">Настройка сортировки (по имени, дате изменения, размеру)</string>
+    <string name="search_button">Поиск</string>
+    <string name="search_dialog_tittle">Поиск файлов</string>
+    <string name="search_dialog_body">Введите название файла (или часть названия) и укажите путь поиска</string>
+    <string name="search_dialog_positive_button">Найти</string>
+    <string name="search_dialog_cb_text">Искать в текущей папке</string>
+    <string name="search_dialog_search_file_label">Название файла:</string>
+    <string name="search_dialog_search_path_label">Путь поиска:</string>
+    <string name="properties_name_label">Имя:</string>
+    <string name="properties_change_time_label">Время:</string>
+    <string name="properties_owner_label">Владелец:</string>
+    <string name="properties_group_label">Группа:</string>
+    <string name="properties_permissions_label">Разрешения:</string>
+    <string name="properties_size_label">Размер:</string>
+    <string name="properties_change_permissions_button">Управление правами доступа</string>
+    <string name="properties_sha1_label" translatable="false">SHA-1:</string>
+    <string name="properties_type_label">Тип:</string>
+    <string name="properties">Свойства</string>
+    <string name="object_type_unknown_file">Неизвестный тип файлов</string>
+    <string name="object_type_dir">Директория</string>
+    <string name="settings_view_show_dirs_size">Показывать размер директорий</string>
+    <string name="settings_view_show_dirs_size_summary">Внимание! Включение данного параметра влияет на производительность</string>
+    <string name="settings_view_show_files_size">Показывать размер файлов</string>
+    <string name="settings_view_show_files_size_summary">Отображение размера файлов с точностью до 2 знаков после запятой</string>
+    <string name="settings_view_show_change_time">Показывать время изменения</string>
+    <string name="settings_view_show_change_time_summary">Включение отображения времени последнего изменения файлов и директорий</string>
+    <string name="properties_calculating">вычисление ...</string>
+    <string name="ok_button" translatable="false">ОК</string>
+    <string name="empty_string" translatable="false">-</string>
+    <string name="edit_permissions_read_permission_label">Чтение</string>
+    <string name="edit_permissions_write_permission_label">Запись</string>
+    <string name="edit_permissions_execute_permission_label">Выполнение</string>
+    <string name="edit_permissions_owner_label">Владелец</string>
+    <string name="edit_permissions_group_label">Группа</string>
+    <string name="edit_permissions_others_label">Другие</string>
+    <string name="permissions">Разрешения</string>
+    <string name="edit_permissions">Изменение разрешений</string>
+    <string name="edit_button">Применить</string>
+    <string name="edit_permissions_fail">Ошибка при изменении разрешений</string>
+    <string name="properties_symlink_label">Ссылка на:</string>
+    <string name="rename_dialog_its_old_name">Задайте новое имя!</string>
+    <string name="create_button">Создать</string>
+    <string name="create_dialog_new_file">Новый файл</string>
+    <string name="create_dialog_new_dir">Новая папка</string>
+    <string name="create_dialog_file_tittle">Создание файла</string>
+    <string name="create_dialog_dir_tittle">Создание директории</string>
+    <string name="create_dialog_file_body">Введите имя файла</string>
+    <string name="create_dialog_dir_body">Введите имя директории</string>
+    <string name="favorite_dialog_add_tittle">Добавление в закладки</string>
+    <string name="favorite_dialog_add_body">В закладки будет добавлен текущий путь. Задайте алиас закладки.</string>
+    <string name="favorite_dialog_add_button">Добавить</string>
+    <string name="favorite_dialog_remove_tittle">Удаление из закладок</string>
+    <string name="favorite_dialog_remove_body">Из закладок будет удален путь:</string>
+    <string name="favorite_dialog_remove_button">Удалить</string>
+    <string name="favorite_dialog_add_body2">Введите название закладки</string>
+    <string name="favorite_dialog_alias_exists">Закладка с таким именем уже существует!</string>
+    <string name="copy_name_to_buffer">Копировать имя</string>
+    <string name="copy_path_to_buffer">Копировать путь</string>
+    <string name="file_operations_zip">Архивировать</string>
+    <string name="zip_dialog_tittle">Архивация данных</string>
+    <string name="zip_dialog_name_input">Введите имя архива</string>
+    <string name="zip_dialog_positive_button">Архивировать</string>
+    <string name="zip_dialog_file_exists">Архив с таким именем уже есть</string>
+    <string name="file_operations_unzip">Распаковать архив</string>
+    <string name="unzip_dialog_tittle">Распаковка архива</string>
+    <string name="unzip_dialog_body">Архив будет распакован в директорию:</string>
+    <string name="unzip_dialog_positive_button">Распаковать</string>
+    <string name="unzip_dialog_file_exists">Данный архив уже был распакован!</string>
+    <string name="settings_general_category">Общие</string>
+    <string name="settings_general_save_last_path">Запоминать последний путь</string>
+    <string name="settings_general_save_last_path_summary">При следующем запуске, отобразится последняя открытая директория</string>
+    <string name="copy_dialog_copy_move_in_self_warning">Нельзя копировать (перемещать) объекты внутрь самих себя!</string>
+    <string name="circle_progress_dialog_tittle">Текущая операция</string>
+    <string name="circle_progress_dialog_body">Дождитесь окончания операции...</string>
+    <string name="activityNotFoundException">Не найдено приложений для открытия данного файла</string>
+    <string name="compressLevel">Выберите степень сжатия</string>
+    <string name="setPassword">Установить пароль</string>
+    <string name="favorite_dialog_default_path_alias_sdcard">Карта памяти</string>
+    <string name="favorite_dialog_default_path_alias_data">Раздел DATA</string>
+    <string name="favorite_dialog_default_path_alias_system">Раздел SYSTEM</string>
+    <string name="favorite_dialog_default_path_alias_root">Корневой раздел</string>
+    <string name="favorite_dialog_default_path_alias_packed_zip">Запакованные архивы</string>
+    <string name="favorite_dialog_default_path_alias_unpacked_zip">Распакованные архивы</string>
+    <string name="zip_dialog_compress_fast">Минимальное (быстрое)</string>
+    <string name="zip_dialog_compress_normal">Нормальное</string>
+    <string name="zip_dialog_compress_max">Максимальное (долгое)</string>
+    <string name="zip_dialog_compress_no">Без сжатия</string>
+    <string name="zip_dialog_split_no">Не разделять</string>
+    <string name="zip_dialog_split_64kb">Разделять по 64 КБ</string>
+    <string name="zip_dialog_split_1mb">Разделять по 1 МБ</string>
+    <string name="zip_dialog_encrypt_standart">Стандартный</string>
+    <string name="zip_dialog_encrypt_aes_128" translatable="false">AES (128 bit)</string>
+    <string name="zip_dialog_encrypt_aes_256" translatable="false">AES (256 bit)</string>
+    <string name="passwordLabel">Пароль на архив</string>
+    <string name="encryptMethodLabel">Метод шифрования</string>
+    <string name="splitLabel">Разделение архива на части</string>
+    <string name="rootCheckDialogText">Сейчас будет проведена проверка на наличие Root прав. Если устройство рутовано - появится окно с запросом Root прав, необходимо нажать Разрешить. Данное окно закроется автоматически.</string>
+    <string name="checkRootDialogTittle">Проверка наличия Root прав</string>
+    <string name="action_menu_check_root">Проверить Root права</string>
+    <string name="rootCheckDialogOKcheck">Root права доступны</string>
+    <string name="rootCheckDialogFAILcheck">Root права недоступны</string>
+    <string name="AboutTab">О программе</string>
+    <string name="CapabilitiesTab">Возможности</string>
+    <string name="about_text">\nFileManager - это Open Source приложение.\nПри наличии на устройстве Root-прав, данное приложение можно использовать как Root-проводник, выполняя манипуляции над любыми файлами в системе. Приложение основано на использовании shell-команд и утилиты BusyBox.</string>
+    <string name="about_text_tittle"><b>Краткая информация</b></string>
+    <string name="about_author_text_tittle">\n<b>Об авторе</b></string>
+    <string name="about_author_text" translatable="false">scorpio92 (4PDA)\ne-mail: scorpio92@mail.ru</string>
+    <string name="capabilities_main_tittle"><b>Основные возможности</b></string>
+    <string name="capabilities_main_text">\n* Полный доступ к корневой файловой системе (при наличии Root-прав)\n\n* Создание и распаковка zip архивов. Поддержка архивов с паролем (шифрование: AES 128bit, AES 256bit)\n\n* Шифрование файлов с помощью алгоритма AES (128 и 256 bit)\n\n* Терминал с поддержкой выполнения команд в режиме root\n\n* Простой текстовый редактор\n\n* Базовые операции с файлами и директориями: создание, копирование, перемещение, удаление, переименование \n\n* Просмотр основных свойств объектов \n\n* Сортировка списка объектов по имени, по дате изменения (от старых к новым и наоборот)\n\n* Поиск файлов и папок по части имени\n\n* Живой поиск - мгновенный поиск объектов в текущем каталоге\n\n* Редактирование прав \n\n* Копирование в буфер обмена имени и пути объектов \n\n* История переходов по каталогам (быстрый переход к указанному пути)\n\n* Возможность создания закладок для наиболее часто посещаемых каталогов\n</string>
+    <string name="about_todo_tittle"><b>\nПланы на будущее</b></string>
+    <string name="about_version_tittle"><b>\nТекущая версия</b></string>
+    <string name="about_changelist_tittle"><b>\nСписок изменений</b></string>
+    <string name="settings_root_category">Настройки Root доступа</string>
+    <string name="settings_root_test_root_time">Время показа диалога проверки Root прав</string>
+    <string name="settings_root_test_root_time_summary">Время в течение которого будет отображаться диалог проверки Root прав. По окончанию отсчета, диалоговое окно автоматически закроется</string>
+    <string name="action_menu_mem_usage_stat">Инф. по разделам</string>
+    <string name="memory_usage_mount_point" translatable="false"><b>Point</b></string>
+    <string name="memory_usage_point_size" translatable="false"><b>Size</b></string>
+    <string name="memory_usage_available" translatable="false"><b>Free</b></string>
+    <string name="memory_usage_point_usage" translatable="false"><b>Use</b></string>
+    <string name="memory_usage_point_usage_in_percent" translatable="false"><b>Use(%)</b></string>
+    <string name="memory_usage_ext_sd"><b>Карта памяти</b></string>
+    <string name="memory_usage_point_no_info">Инф. о системных разделах недоступна</string>
+    <string name="opentext_dialog_tittle">Открытие текстового файла</string>
+    <string name="opentext_dialog_body">Попытаться открыть данный файл встроенным средством просмотра тестовых файлов TextViewer?</string>
+    <string name="openTextFileException">Не удалось открыть текстовый файл</string>
+    <string name="settings_textviewer_category">Настройки TextViewer</string>
+    <string name="settings_textviewer_font_size">Размер шрифта</string>
+    <string name="settings_textviewer_font_size_summary">Настройка размера отображаемого шрифта </string>
+    <string name="settings_textviewer_line_break">Перенос строки</string>
+    <string name="settings_textviewer_line_break_summary">Включается перенос всех строк которые не умещаются на экране</string>
+    <string name="file_operations_open_in_textviewer">Открыть в TextViewer</string>
+    <string name="file_operations_open_in_texteditor">Открыть в TextEditor</string>
+    <string name="texteditor_menu_save">Сохранить изменения</string>
+    <string name="texteditor_menu_undo">Отменить изменения</string>
+    <string name="settings_texteditor_category">Настройки TextEditor</string>
+    <string name="settings_texteditor_allow_bak_files">Разрешить создание резервных копий</string>
+    <string name="settings_texteditor_allow_bak_files_summary">Во избежание потери данных, при открытии файла на редактирование будет создаваться его резервная копия (*.bak)</string>
+    <string name="texteditor_backup_create_fail">Ошибка при создании резервной копии файла!</string>
+    <string name="texteditor_save_ok">Изменения успешно сохранены</string>
+    <string name="texteditor_save_fail">Возникла ошибка при попытке сохранить изменения</string>
+    <string name="texteditor_undo_ok">Изменения успешно отменены</string>
+    <string name="texteditor_undo_fail">При отмене изменений произошла ошибка</string>
+    <string name="settings_textviewer_line_nums">Номера строк</string>
+    <string name="settings_textviewer_line_nums_summary">Отображать номера строк</string>
+    <string name="texteditor_line_num_menu_delete">Удалить строку</string>
+    <string name="texteditor_line_num_menu_copy">Скопировать текст</string>
+    <string name="title_activity_terminal" translatable="false">Terminal</string>
+    <string name="action_menu_terminal">Терминал</string>
+    <string name="settings_terminal_category">Настройки терминала</string>
+    <string name="settings_terminal_font_size">Настройки шрифта терминала</string>
+    <string name="settings_terminal_font_size_summary">Размер шрифта</string>
+    <string name="settings_terminal_line_break">Разрешить перенос строк в терминале</string>
+    <string name="settings_terminal_line_break_summary">Строки которые не влезают на весь экран будут переноситься на новую строку</string>
+    <string name="settings_terminal_line_nums_summary">Включить отображение номера строк</string>
+    <string name="terminal_line_menu_copy">Скопировать строку</string>
+    <string name="terminal_line_menu_rerun">Выполнить команду повторно</string>
+    <string name="file_operations_encrypt">Зашифровать файл</string>
+    <string name="file_operations_decrypt">Расшифровать файл</string>
+    <string name="encrypt_password_label">Введите пароль</string>
+    <string name="encrypt_key_lenght_label">Выберите длину ключа</string>
+    <string name="ecnrypt_delete_source_file_label">Удалить исходный файл</string>
+    <string name="encrypt_dialog_tittle">Шифрование файла</string>
+    <string name="encrypt_dialog_positive_button">Зашифровать</string>
+    <string name="circleProgressText">Дождитесь завершения операции...</string>
+    <string name="settings_crypto_category">Настройки шифрования</string>
+    <string name="settings_crypto_key_lenght">Длина ключа</string>
+    <string name="settings_crypto_key_lenght_summary">128 или 256 бит</string>
+    <string name="decrypt_dialog_tittle">Расшифровка файла</string>
+    <string name="decrypt_dialog_positive_button">Расшифровать</string>
+    <string name="search_dialog_incorrect_path">Задан несуществующий путь!</string>
+    <string name="selected">Выбрано</string>
+    <string name="settings_view_show_selected_files_size">Показывать размер выделенных объектов</string>
+    <string name="settings_view_show_selected_files_size_summary">Показывать суммарный размер выделенных файлов и папок</string>
+    <string name="selected_full_size">Общий размер</string>
+    <string name="selected_size_calculating">идёт вычисление размера ...</string>
+    <string name="no_needed_app_components">Нет необходимых компонентов для запуска приложения!</string>
+    <string name="operation_result_interrupted">Прервано пользователем</string>
+    <string name="archPackedTab">Запакованные архивы</string>
+    <string name="archUnpackedTab">Распакованные архивы</string>
+    <string name="action_menu_work_files">Рабочие файлы</string>
+    <string name="work_files_menu_acrh">Архивы</string>
+    <string name="work_files_menu_crypto">Шифрование</string>
+    <string name="encryptedTab">Зашифрованные файлы</string>
+    <string name="decryptedTab">Расшифрованные файлы</string>
+    <string name="it_is_not_zip">Это не zip архив!</string>
+    <string name="work_files_menu_exit">Закрыть</string>
+    <string name="only_zip_for_unpack">Распаковке подлежат только файлы с расширением zip!</string>
+    <string name="positive_button">Да</string>
+    <string name="open_work_files_tittle">Готово</string>
+    <string name="open_work_files_body">Открыть окно Рабочие файлы для просмотра архивов и зашифрованных файлов?</string>
+    <string name="settings_general_allow_self_copy" translatable="false">SELF COPY</string>
+    <string name="settings_general_allow_self_copy_summary">Разрешить копирование папок в самих себя</string>
+    <string name="successful_copy_to_cliboard">Текст успешно скопирован!</string>
+    <string name="problems_with_app_db">Проблемы с БД приложения! Выходим.</string>
+    <string name="no_button">Нет</string>
+    <string name="action_menu_help">Помощь</string>
+    <string name="intro_welcome">Добро пожаловать</string>
+    <string name="intro_welcome_more">Узнайте как пользоваться приложением, пройдя небольшой вводный курс. Для немедленного перехода к приложению, нажмите кнопку Назад.</string>
+    <string name="intro_go_button">Поехали!</string>
+    <string name="help0" translatable="false">0</string>
+    <string name="help1" translatable="false">1</string>
+    <string name="help2" translatable="false">2</string>
+    <string name="help0_first_start_app">Первый запуск приложения</string>
+    <string name="help0_first_start_app_more">При первом запуске приложения, производится проверка на наличие Root-прав. По окончанию проверки окно закроется автоматически.\nЕсли приложению не предоставить Root-права, некоторые функции будут недоступны (например просмотр системных раззделов). Для принудительного разрешения/запрета Root-прав для приложения, данную проверку можно вызвать из меню приложения.</string>
+    <string name="help1_action_bar" translatable="false">ActionBar</string>
+    <string name="help1_action_bar_more">ActionBar или верхняя панель приложения. Элементы:\n* Текущий путь\n* Закладки. Одиночное нажатие - открытие диалога выбора закладок, долгое - добавление/удаление закладки\n* Отобразить/скрыть дополнительную панель\n* Меню приложения</string>
+    <string name="help3_additional_panel">Дополнительная верхняя панель</string>
+    <string name="help3_additional_panel_more">Элементы:\n* Выбрать все\n* Обновить текущее представление\n* Поиск в текущем представлении\n* Глобальный поиск\n* Сортировка\n* Создать новый файл/директорию</string>
+    <string name="help2_app_menu">Меню приложения</string>
+    <string name="help2_app_menu_more">* Рабочие файлы\nОтдельное окно, отображающее содержимое хранилища приложения. Предназначено для просмотра запакованных/распакованных архивов и зашифрованных/расшифрованных файлов\n* Терминал\nТерминальный клиент поддерживающий выполнение busybox апплетов. Имеется возможность скопировать строку и повторно выполнить команду\n* Информация по разделам\nВывод краткой информации по всем имеющимся разделам в системе </string>
+    <string name="help3" translatable="false">3</string>
+    <string name="help4" translatable="false">4</string>
+    <string name="help5" translatable="false">5</string>
+    <string name="help6" translatable="false">6</string>
+    <string name="help7" translatable="false">7</string>
+    <string name="help8" translatable="false">8</string>
+    <string name="help4_live_search">Поиск в текущем представлении</string>
+    <string name="help4_live_search_more">Мгновенный поиск объектов в текущей директории. Поддерживается regexp.</string>
+    <string name="help5_search">Глобальный поиск</string>
+    <string name="help5_search_more">Поиск файлов по части имени или расширению. По умолчанию поиск производится в текущей директории, однако путь поиска можно задать вручную.</string>
+    <string name="help6_archive">Архивация</string>
+    <string name="help6_archive_more">Создание архивов из файлов и папок. Поддерживается шифрование архивов (AES), разделение на части (64KB, 1MB), различная степень сжатия.\nПри создании архива необходимо указать уникальное имя. Созданные архивы сохраняются в хранилище приложения, их можно просмотреть в окне Рабочие файлы.</string>
+    <string name="help7_crypto">Шифрование</string>
+    <string name="help7_crypto_more">Файлы можно зашифровать с помощью алгоритма симметричного шифрования AES (128 или 256 bit). Размер ключа задается в настройках приложения. Зашифрованные файлы сохраняются в хранилище приложения, их можно просмотреть в окне Рабочие файлы.</string>
+    <string name="help8_work_files">Окно Рабочие файлы</string>
+    <string name="help8_work_files_more">Данное окно отображает содержимое хранилища приложения. На отдельных вкладках отображаются архивы (запакованные и распакованные), а также шифрованные и расшифрованные файлы.\nНа данные момент доступны 4 операции:\n* Распаковать архив или Расшифровать файл, для архива или зашифрованного файла соответственно\n* Удалить\n*Открыть в TextViewer\n* Выбрать все/снять выделение</string>
+    <string name="help9_finish">Финиш</string>
+    <string name="help9_finish_more"><![CDATA[Вот и все! Для закрытия данного окна, нажмите на кнопку ниже.]]></string>
+    <string name="help_finish_goto_app">К приложению!</string>
+    <string name="help9" translatable="false">9</string>
+    <string name="file_operations_selector">Выбрать все/снять выделение</string>
+    <string name="it_is_not_file">Это не файл!</string>
+    <string name="favorite_dialog_app_store_alias_sdcard">Хранилище приложения</string>
+    <string name="author_site" translatable="false">www.scorpio92.ru\n</string>
+    <string name="settings_terminal_line_nums">Показывать номера строк</string>
+    <string name="settings_root_test_root_time_3s">3 сек</string>
+    <string name="settings_root_test_root_time_5s">5 сек</string>
+    <string name="settings_root_test_root_time_7s">7 сек</string>
+    <string name="textviewer_font_size_big">Большой</string>
+    <string name="textviewer_font_size_medium">Средний</string>
+    <string name="textviewer_font_size_small">Маленький</string>
+    <string name="textviewer_font_size_verysmall">Очень маленький</string>
+    <string name="settings_crypto_key_lenght_128_bit">128 бит</string>
+    <string name="settings_crypto_key_lenght_256_bit">256 бит</string>
+    <string name="settings_view_sort_by_name_file_first">По имени (сначала файлы)</string>
+</resources>

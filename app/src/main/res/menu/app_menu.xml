@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
+    <item android:id="@+id/action_favorite_path"
+        android:orderInCategory="100" android:showAsAction="always" android:actionViewClass="android.widget.ImageButton"/>
+    <item android:id="@+id/action_menu_panel"
+        android:orderInCategory="100" android:showAsAction="always" android:actionViewClass="android.widget.ImageButton"/>
+    <item android:id="@+id/action_menu_work_files" android:title="@string/action_menu_work_files"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/action_menu_terminal" android:title="@string/action_menu_terminal"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/action_menu_mem_usage_stat" android:title="@string/action_menu_mem_usage_stat"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/action_menu_check_root" android:title="@string/action_menu_check_root"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/action_menu_settings" android:title="@string/action_menu_settings"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/action_menu_help" android:title="@string/action_menu_help"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/action_menu_about" android:title="@string/action_menu_about"
+        android:orderInCategory="100" android:showAsAction="never" />
+    <item android:id="@+id/action_menu_exit" android:title="@string/action_menu_exit"
+        android:orderInCategory="100" android:showAsAction="never" />
+</menu>

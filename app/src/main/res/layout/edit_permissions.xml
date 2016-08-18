@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_permissions_read_permission_label"
+            android:id="@+id/edit_permissions_read_permission_label"
+            android:textSize="12sp"
+            android:layout_column="2" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_permissions_write_permission_label"
+            android:id="@+id/edit_permissions_write_permission_label"
+            android:textSize="12sp"
+            android:layout_column="4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_permissions_execute_permission_label"
+            android:id="@+id/edit_permissions_execute_permission_label"
+            android:textSize="12sp"
+            android:layout_column="6" />
+
+    </TableRow>
+
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_permissions_owner_label"
+            android:id="@+id/edit_permissions_owner_label"
+            android:textSize="12sp"
+            android:layout_column="0" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_owner_read"
+            android:layout_column="2" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_owner_write"
+            android:layout_column="4" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_owner_execute"
+            android:layout_column="6" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_permissions_group_label"
+            android:id="@+id/edit_permissions_group_label"
+            android:textSize="12sp"
+            android:layout_column="0" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_group_read"
+            android:layout_column="2" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_group_write"
+            android:layout_column="4" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_group_execute"
+            android:layout_column="6" />
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/edit_permissions_others_label"
+            android:id="@+id/edit_permissions_others_label"
+            android:textSize="12sp"
+            android:layout_column="0" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_others_read"
+            android:layout_column="2" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_others_write"
+            android:layout_column="4" />
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/edit_permissions_others_execute"
+            android:layout_column="6" />
+
+    </TableRow>
+
+</TableLayout>

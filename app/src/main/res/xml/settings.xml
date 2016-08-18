@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        android:title="@string/settings_general_category">
+
+        <CheckBoxPreference
+            android:title="@string/settings_general_save_last_path"
+            android:defaultValue="true"
+            android:summary="@string/settings_general_save_last_path_summary"
+            android:key="settings_general_save_last_path" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_general_allow_self_copy"
+            android:defaultValue="false"
+            android:summary="@string/settings_general_allow_self_copy_summary"
+            android:key="settings_general_allow_self_copy" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_view_category">
+
+        <ListPreference
+            android:title="@string/settings_view_sort"
+            android:summary="@string/settings_view_sort_summary"
+            android:key="settings_view_sort"
+            android:defaultValue="1"
+            android:entries="@array/sortListArray"
+            android:entryValues="@array/sortListValues" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_view_show_dirs_size"
+            android:defaultValue="false"
+            android:summary="@string/settings_view_show_dirs_size_summary"
+            android:key="settings_view_show_dirs_size" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_view_show_files_size"
+            android:defaultValue="true"
+            android:summary="@string/settings_view_show_files_size_summary"
+            android:key="settings_view_show_files_size" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_view_show_change_time"
+            android:defaultValue="true"
+            android:summary="@string/settings_view_show_change_time_summary"
+            android:key="settings_view_show_change_time" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_view_show_selected_files_size"
+            android:defaultValue="true"
+            android:summary="@string/settings_view_show_selected_files_size_summary"
+            android:key="settings_view_show_selected_files_size" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_textviewer_category">
+
+        <ListPreference
+            android:title="@string/settings_textviewer_font_size"
+            android:summary="@string/settings_textviewer_font_size_summary"
+            android:key="settings_textviewer_font_size"
+            android:defaultValue="14"
+            android:entries="@array/textviewer_font_sizeListArray"
+            android:entryValues="@array/textviewer_font_sizeListValues" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_textviewer_line_break"
+            android:defaultValue="false"
+            android:summary="@string/settings_textviewer_line_break_summary"
+            android:key="settings_textviewer_line_break" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_textviewer_line_nums"
+            android:defaultValue="false"
+            android:summary="@string/settings_textviewer_line_nums_summary"
+            android:key="settings_textviewer_line_nums" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_texteditor_allow_bak_files"
+            android:defaultValue="false"
+            android:summary="@string/settings_texteditor_allow_bak_files_summary"
+            android:key="settings_texteditor_allow_bak_files" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_terminal_category">
+
+        <ListPreference
+            android:title="@string/settings_terminal_font_size"
+            android:summary="@string/settings_terminal_font_size_summary"
+            android:key="settings_terminal_font_size"
+            android:defaultValue="14"
+            android:entries="@array/terminal_font_sizeListArray"
+            android:entryValues="@array/terminal_font_sizeListValues" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_terminal_line_break"
+            android:defaultValue="false"
+            android:summary="@string/settings_terminal_line_break_summary"
+            android:key="settings_terminal_line_break" />
+
+        <CheckBoxPreference
+            android:title="@string/settings_terminal_line_nums"
+            android:defaultValue="false"
+            android:summary="@string/settings_terminal_line_nums_summary"
+            android:key="settings_terminal_line_nums" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_crypto_category">
+
+        <ListPreference
+            android:title="@string/settings_crypto_key_lenght"
+            android:summary="@string/settings_crypto_key_lenght_summary"
+            android:key="settings_crypto_key_lenght"
+            android:defaultValue="128"
+            android:entries="@array/settings_crypto_key_lenght_ListArray"
+            android:entryValues="@array/settings_crypto_key_lenght_ListValues" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="@string/settings_root_category">
+
+        <ListPreference
+            android:title="@string/settings_root_test_root_time"
+            android:summary="@string/settings_root_test_root_time_summary"
+            android:key="settings_root_test_root_time"
+            android:defaultValue="5"
+            android:entries="@array/rootTimeListArray"
+            android:entryValues="@array/rootTimeListValues" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>

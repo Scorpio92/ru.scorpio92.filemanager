@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <item name="android:textColorSecondary">@android:color/black</item>
+        <item name="android:textColorTertiary">@android:color/black</item>
+        <item name="android:windowBackground">@color/background</item>
+        <item name="android:actionBarStyle">@style/ActionBar</item>
+        <item name="android:actionBarItemBackground">@drawable/custom_listview_row_selector</item>
+        <item name="android:alertDialogTheme">@style/AlertDialog_Theme</item>
+        <item name="android:alertDialogStyle">@style/AlertDialog_Style</item>
+        <item name="android:actionBarTabStyle">@style/ActionBar.TabView</item>
+        <item name="android:itemBackground">@drawable/custom_dropdown_row_selector</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListViewStyle</item>
+        <item name="android:popupMenuStyle">@style/PopupMenuStyle</item>
+        <item name="android:textViewStyle">@style/TextViewStyle</item>
+        <item name="android:editTextStyle">@style/EditTextStyle</item>
+        <item name="android:checkboxStyle">@style/CheckBoxStyle</item>
+        <item name="android:spinnerStyle">@style/SpinnerStyle</item>
+        <item name="android:actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+        <item name="android:progressBarStyle">@style/ProgressBarStyle</item>
+        <item name="android:progressBarStyleHorizontal">@style/ProgressBarHorizontalStyle</item>
+        <item name="android:buttonStyle">@style/ButtonStyle</item>
+        <item name="android:imageButtonStyle">@style/ImageButtonStyle</item>
+        <item name="android:logo">@android:color/transparent</item>
+    </style>
+
+    <style name="settings_theme" parent="AppTheme">
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:listSeparatorTextViewStyle">@style/PreferenceListHeader</item>
+    </style>
+
+    <style name="AlertDialog_Theme" parent="@android:style/Theme.Holo.Dialog">
+
+        <item name="android:windowTitleStyle">@style/AlertDialog_Theme.windowTitleStyle</item>
+        <item name="android:borderlessButtonStyle">@style/AlertDialog_Theme.Button.Borderless</item>
+        <item name="android:buttonBarStyle">@style/AlertDialog_Theme.ButtonBar.AlertDialog</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowMinWidthMajor">@android:dimen/dialog_min_width_major</item>
+        <item name="android:windowMinWidthMinor">@android:dimen/dialog_min_width_minor</item>
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorAlertDialogListItem">@android:color/white</item>
+        <item name="android:textAppearanceMedium">@style/TextAppearance.AlertDialog_Theme.Medium</item>
+    </style>
+
+</resources>

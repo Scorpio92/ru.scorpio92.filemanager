@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <TableLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/terminalFieldRowLineNum"
+                android:textColor="@color/matrix"
+                android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/terminalFieldRowLineType"
+                android:textColor="@color/matrix"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/terminalFieldRow"
+                android:inputType="text"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@color/matrix" />
+
+        </TableRow>
+
+    </TableLayout>
+
+</RelativeLayout>

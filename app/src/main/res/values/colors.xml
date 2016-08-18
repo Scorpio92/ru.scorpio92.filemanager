@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="background">#FF000000</color>
+    <color name="scorpio_yellow">#F8EF3A</color>
+    <color name="blue_sky">#1bc0ff</color>
+    <color name="grey">#6f6f6d</color>
+    <color name="blood">#ffff0008</color>
+    <color name="matrix">#ff0af403</color>
+
+    <color name="separator0">@color/blue_sky</color>
+    <color name="separator1">@color/blue_sky</color>
+    <color name="separator2">@color/blue_sky</color>
+    <color name="separator3">@color/blue_sky</color>
+    <color name="separator4">@color/blue_sky</color>
+</resources>

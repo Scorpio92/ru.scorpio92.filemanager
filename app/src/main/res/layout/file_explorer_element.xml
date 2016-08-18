@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:descendantFocusability="blocksDescendants"
+    android:clickable="false"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/custom_listview_row_selector">
+
+
+    <CheckBox
+        android:layout_width="@dimen/filelist_objects_width_height"
+        android:layout_height="@dimen/filelist_objects_width_height"
+        android:id="@+id/objectSelector" />
+
+    <ImageView
+        android:id="@+id/fileIcon"
+        android:layout_width="@dimen/filelist_objects_width_height"
+        android:layout_height="@dimen/filelist_objects_width_height" />
+
+    <TableLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/file_explorer_main_table">
+
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/fileName"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textIsSelectable="false"
+                android:clickable="false"
+                android:textSize="@dimen/filelist_filename_text_height" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/file_explorer_properties_table">
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:id="@+id/file_date"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/filelist_secondary_text_height"
+                        android:singleLine="true"
+                        android:layout_weight="1"
+                        />
+
+                    <TextView
+                        android:id="@+id/file_size"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textSize="@dimen/filelist_secondary_text_height"
+                        android:layout_width="wrap_content"
+                        android:singleLine="true"
+                        />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

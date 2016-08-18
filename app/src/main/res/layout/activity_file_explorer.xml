@@ -1,0 +1,216 @@
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:focusableInTouchMode="true" >
+
+    <View
+        android:layout_height="@dimen/separator0_height"
+        android:background="@color/separator0"
+        android:id="@+id/separator0"/>
+
+    <TableRow
+        android:id="@+id/actionPanel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:visibility="gone">
+
+        <CheckBox
+            android:layout_width="@dimen/actionbar_panel_width_height"
+            android:layout_height="@dimen/actionbar_panel_width_height"
+            android:id="@+id/selector"
+            android:layout_column="0"
+            android:checked="false" />
+
+        <ImageButton
+            android:layout_width="@dimen/actionbar_panel_width_height"
+            android:layout_height="@dimen/actionbar_panel_width_height"
+            android:id="@+id/refresh_button"
+            android:layout_column="1"
+            android:src="@drawable/ic_refresh"
+            android:background="@android:color/transparent" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/liveSearch"
+            android:layout_column="2"
+            android:layout_weight="1"
+            android:focusableInTouchMode="true"
+            android:background="@drawable/edittext_bg"
+            android:textSize="@dimen/input_text_height"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:paddingTop="10dp" />
+
+        <ImageButton
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:id="@+id/search_button"
+            android:layout_column="3"
+            android:textSize="@dimen/input_text_height"
+            android:src="@drawable/ic_search"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:layout_width="@dimen/actionbar_panel_width_height"
+            android:layout_height="@dimen/actionbar_panel_width_height"
+            android:id="@+id/sort_button"
+            android:layout_column="4"
+            android:src="@drawable/ic_sort"
+            android:background="@android:color/transparent" />
+
+        <ImageButton
+            android:layout_width="@dimen/actionbar_panel_width_height"
+            android:layout_height="@dimen/actionbar_panel_width_height"
+            android:id="@+id/create_button"
+            android:layout_column="5"
+            android:src="@drawable/ic_add_object"
+            android:background="@android:color/transparent" />
+
+    </TableRow>
+
+    <View
+        android:layout_height="@dimen/separator1_height"
+        android:background="@color/separator1"
+        android:id="@+id/separator1"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:id="@+id/memory_usage_current_partition_layout">
+
+        <TableLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/memory_usage_current_partition"
+                    android:textSize="@dimen/actionbar_panel_text_height"
+                    android:textColor="@android:color/white" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="@dimen/separator2_height"
+        android:background="@color/separator2"
+        android:id="@+id/separator2"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/black"
+        android:id="@+id/selected_info_layout">
+
+        <TableLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/selected_info"
+                    android:textSize="@dimen/actionbar_panel_text_height"
+                    android:visibility="gone"
+                    android:textColor="@android:color/white" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="@dimen/separator3_height"
+        android:background="@color/separator3"
+        android:id="@+id/separator3"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:background="@android:color/black">
+
+        <ListView
+            android:id="@+id/filesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fastScrollAlwaysVisible="true"
+            android:divider="@null">
+        </ListView>
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="@dimen/separator4_height"
+        android:background="@color/separator4" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/additionalPanel"
+        android:background="@android:color/black">
+
+        <TableLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/negative_button"
+                    android:id="@+id/negative_button"
+                    android:layout_column="1"
+                    android:layout_weight="1"
+                    android:height="@dimen/buttons_height"
+                    android:textSize="@dimen/buttons_text_height"
+                    android:onClick="onCancelClick"
+                    />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/paste_moveButton"
+                    android:layout_column="2"
+                    android:layout_weight="1"
+                    android:height="@dimen/buttons_height"
+                    android:textSize="@dimen/buttons_text_height"
+                    android:onClick="onPasteMoveClick"
+               />
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+
+</TableLayout>

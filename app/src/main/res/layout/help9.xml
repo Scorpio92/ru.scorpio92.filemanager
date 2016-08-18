@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:paddingTop="10dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="@string/help9_finish"
+                android:layout_gravity="center"
+                android:textColor="@color/scorpio_yellow"
+                android:textStyle="bold|italic"
+                android:gravity="center"
+                android:paddingBottom="10dp" />
+
+        </TableRow>
+
+        <View
+            android:layout_height="@dimen/separator0_height"
+            android:background="@color/blue_sky" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="@string/help9_finish_more"
+                android:textColor="@color/scorpio_yellow"
+                android:textStyle="bold|italic"
+                android:password="false"
+                android:padding="10dp" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+        </TableRow>
+
+        <View
+            android:layout_height="@dimen/separator0_height"
+            android:background="@color/blue_sky" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="5dp"
+                android:visibility="invisible"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/help_finish_goto_app"
+                android:id="@+id/goto_app"
+                android:layout_gravity="center"
+                android:padding="10dp" />
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

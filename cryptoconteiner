@@ -1,0 +1,29 @@
+создаем контейнер 100 Мб
+dd if=/dev/zero of=test.img bs=1024 count=0 seek=$((1024*100))
+
+
+Привяжем его к loopback-устройству –
+
+#losetup /dev/block/loop3 /data/secure0
+
+
+Отформатируем в Luks-формат используя 128-битное AES шифрование –
+
+#lm.cryptsetup luksFormat –c aes-plain /dev/block/loop3
+
+
+Откроем наш новый криптоконтейнер для дальнейшей настройки –
+
+#lm.cryptsetup luksOpen /dev/block/loop3 data
+
+
+Где data — выбранное нами название для крипто-контейнера.
+Создадим в нашем крипто-контейнере файловую систему ext4 –
+
+#mke2fs –T ext4 –L Secure0 -F /dev/mapper/data
+
+
+Контейнер для /data/ готов, пока отложим его в сторону и займемся SD-картой, предварительно сохранив прогресс и правильно закрыв файл –
+
+#lm.cryptsetup luksClose  data
+
