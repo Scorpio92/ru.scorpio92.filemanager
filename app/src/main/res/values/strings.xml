@@ -288,4 +288,6 @@
     <string name="settings_crypto_key_lenght_128_bit">128 бит</string>
     <string name="settings_crypto_key_lenght_256_bit">256 бит</string>
     <string name="settings_view_sort_by_name_file_first">По имени (сначала файлы)</string>
+    <string name="settings_view_show_hidden">Показывать скрытые объекты</string>
+    <string name="settings_view_show_hidden_summary">Показывать скрытие файлы и папки</string>
 </resources>

@@ -68,7 +68,8 @@ public class MainUI extends Activity implements Callback {
     private ImageButton sortButton;
     private ImageButton createButton;
 
-    private Boolean searchListDisplayed=false; //признак показано ли окно найденных результатов
+    private boolean searchListDisplayed=false; //признак показано ли окно найденных результатов
+    private boolean disableFastSearchMode = false; //если true - не передаем в метод обновления директории параметр grep для фильтрации
 
 
 
@@ -399,6 +400,7 @@ public class MainUI extends Activity implements Callback {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 //обновляем текущее представление только если что-то ввели
                 if (s.length() > 0) {
+                    disableFastSearchMode = false;
                     refreshCurrentDir();
                 }
             }
@@ -461,6 +463,7 @@ public class MainUI extends Activity implements Callback {
                     if (getVarStore().getCurrentDir().getObjects().get(i).type.equals(Constants.OBJECT_TYPE_DIR) ||
                             getVarStore().getCurrentDir().getObjects().get(i).type.equals(Constants.OBJECT_TYPE_SYMLINK_DIR)) {
                         getVarStore().setHistoryPath(path); //устанавливаем путь для истории
+                        disableFastSearchMode = true;
                         updateFileList(path);
                         filesList.setSelection(0); //перелистываем в начало списка
                         //очищаем строку живого поиска
@@ -1459,7 +1462,11 @@ public class MainUI extends Activity implements Callback {
             if(liveSearch.getText().length() == 0) { //если ничего не ввели в поисковую строку
                 FileUtils.getAndSortObjectsList(path, "", false, MainUI.this);
             } else {
-                FileUtils.getAndSortObjectsList(path, liveSearch.getText().toString(), false, MainUI.this);
+                if(!disableFastSearchMode) {
+                    FileUtils.getAndSortObjectsList(path, liveSearch.getText().toString(), false, MainUI.this);
+                } else {
+                    FileUtils.getAndSortObjectsList(path, "", false, MainUI.this);
+                }
             }
 
         } catch (Exception e) {

@@ -53,6 +53,12 @@
             android:summary="@string/settings_view_show_selected_files_size_summary"
             android:key="settings_view_show_selected_files_size" />
 
+        <CheckBoxPreference
+            android:title="@string/settings_view_show_hidden"
+            android:defaultValue="true"
+            android:summary="@string/settings_view_show_hidden_summary"
+            android:key="settings_view_show_hidden" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

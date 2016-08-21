@@ -50,6 +50,9 @@ public class Constants  {
     public static final String VIEW_SHOW_FILE_SIZE_KEY="settings_view_show_files_size";
     public static final String VIEW_SHOW_CHANGE_TIME_KEY="settings_view_show_change_time";
     public static final String VIEW_SHOW_SELECTED_FILES_SIZE_KEY="settings_view_show_selected_files_size";
+    //скрытые файлы
+    public static final String VIEW_SHOW_HIDDEN_KEY = "settings_view_show_hidden";
+
     //шифрование
     public static final String CRYPTO_KEY_LENGHT_KEY = "settings_crypto_key_lenght";
     public static final String CRYPTO_BUFFER_SIZE_KEY = "settings_crypto_buffer";

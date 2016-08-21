@@ -28,7 +28,12 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String s) {
-        if(s.equals(Constants.SORT_SETTING_KEY) || s.equals(Constants.VIEW_SHOW_CHANGE_TIME_KEY) || s.equals(Constants.VIEW_SHOW_DIR_SIZE_KEY) || s.equals(Constants.VIEW_SHOW_FILE_SIZE_KEY)) {
+        if(s.equals(Constants.SORT_SETTING_KEY) ||
+                s.equals(Constants.VIEW_SHOW_CHANGE_TIME_KEY) ||
+                s.equals(Constants.VIEW_SHOW_DIR_SIZE_KEY) ||
+                s.equals(Constants.VIEW_SHOW_FILE_SIZE_KEY) ||
+                s.equals(Constants.VIEW_SHOW_HIDDEN_KEY))
+        {
             //view_settings_was_changed = true;
             setResult();
         }

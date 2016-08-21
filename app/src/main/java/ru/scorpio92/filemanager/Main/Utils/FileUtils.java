@@ -34,6 +34,8 @@ public class FileUtils {
 
     private static final String GET_ALL_DIR_OBJECTS_AND_TYPES = "BB=BUSYBOX_FOR_REPLACE; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB printf '%s\\n' \"PATH_FOR_REPLACE\"/* | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
 
+    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"/; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls -A \"$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\" )); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
+
     private static final String GET_OBJECT_RAW_INFO = "BB=BUSYBOX_FOR_REPLACE; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB printf '%s\\n' \"PATH_FOR_REPLACE\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
 
 
@@ -187,11 +189,16 @@ public class FileUtils {
                     command = GET_OBJECT_RAW_INFO
                             .replace("PATH_FOR_REPLACE", path);
                 } else {
+                    if (SettingsUtils.getBooleanSettings(VarStore.getAppContext(), Constants.VIEW_SHOW_HIDDEN_KEY)) {
+                        command = GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN;
+                    } else {
+                        command = GET_ALL_DIR_OBJECTS_AND_TYPES;
+                    }
                     if (path.equals("/")) {
-                        command = GET_ALL_DIR_OBJECTS_AND_TYPES
+                        command = command
                                 .replace("PATH_FOR_REPLACE", "");
                     } else {
-                        command = GET_ALL_DIR_OBJECTS_AND_TYPES
+                        command = command
                                 .replace("PATH_FOR_REPLACE", path);
                     }
                 }
