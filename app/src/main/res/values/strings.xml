@@ -292,4 +292,6 @@
     <string name="settings_view_show_hidden_summary">Показывать скрытие файлы и папки</string>
     <string name="settings_general_show_current_partition_mem_stat">Использование памяти в текущем разделе</string>
     <string name="settings_general_show_current_partition_mem_stat_summary">Отображать доп. панель с информацией о размере раздела, кол-ве свободной и используемой памяти</string>
+    <string name="objects_count_dirs">Директорий:</string>
+    <string name="objects_count_files">Файлов:</string>
 </resources>

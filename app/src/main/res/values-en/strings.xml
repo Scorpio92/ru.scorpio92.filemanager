@@ -267,4 +267,6 @@
     <string name="settings_view_show_hidden_summary">Show hidden folders and files</string>
     <string name="settings_general_show_current_partition_mem_stat">Memory usage in current partition</string>
     <string name="settings_general_show_current_partition_mem_stat_summary">Show additional panel with info about partition size, available and used memory</string>
+    <string name="objects_count_dirs">Dirs:</string>
+    <string name="objects_count_files">Files:</string>
 </resources>

@@ -28,7 +28,9 @@ public class FileUtils {
 
     private static final String GET_ALL_SUBDIR_OBJECTS = "BB=BUSYBOX_FOR_REPLACE; $BB find \"PATH_FOR_REPLACE\"";
 
+    private static final String GET_ALL_OBJECTS_COUNT_IN_CURR_DIR = "BB=BUSYBOX_FOR_REPLACE; $BB find \"PATH_FOR_REPLACE\" -mindepth 1 -maxdepth 1 | $BB wc -l";
 
+    private static final String GET_DIRS_COUNT_IN_CURR_DIR = "BB=BUSYBOX_FOR_REPLACE; $BB find \"PATH_FOR_REPLACE\" -mindepth 1 -maxdepth 1 -type d | $BB wc -l";
 
     private static final String GET_SPACE_USAGE_STAT = "BB=BUSYBOX_FOR_REPLACE; $BB df -Ph PATH_FOR_REPLACE | $BB sed 1d | $BB tr -s ' ' | $BB cut -d ' ' -f6,2,3,4"; //в названии точек монтирования пробелов нет, поэтом путь в кавычки не берем иначае не получим инфо по всем разделам
 
@@ -451,5 +453,22 @@ public class FileUtils {
             Log.e("save", null, e);
         }
         return false;
+    }
+
+    public static Integer getObjectsCountInDir(String path, boolean calcDirsCount) {
+        try {
+            String commandForDirs = GET_DIRS_COUNT_IN_CURR_DIR.replace("PATH_FOR_REPLACE", path);
+            int dirsCount = Integer.parseInt(getMainOperationsTools().runProcess(new String[]{Constants.SH_PATH, "-c", commandForDirs}).get(0));
+            if(calcDirsCount) {
+                return dirsCount;
+            } else {
+                String commandForFiles = GET_ALL_OBJECTS_COUNT_IN_CURR_DIR.replace("PATH_FOR_REPLACE", path);
+                int allObjectsCount = Integer.parseInt(getMainOperationsTools().runProcess(new String[]{Constants.SH_PATH, "-c", commandForFiles}).get(0));
+                return allObjectsCount-dirsCount;
+            }
+        } catch (Exception e) {
+            Log.e("getObjectsCountInDir", null, e);
+        }
+        return 0;
     }
 }

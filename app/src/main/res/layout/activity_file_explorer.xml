@@ -115,6 +115,28 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:background="@android:color/black">
+
+        <ListView
+            android:id="@+id/filesList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fastScrollAlwaysVisible="true"
+            android:divider="@null">
+        </ListView>
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="@dimen/separator3_height"
+        android:background="@color/separator3"
+        android:id="@+id/separator3"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:background="@android:color/black"
         android:id="@+id/selected_info_layout">
 
@@ -142,30 +164,41 @@
     </LinearLayout>
 
     <View
-        android:layout_height="@dimen/separator3_height"
-        android:background="@color/separator3"
-        android:id="@+id/separator3"/>
+        android:layout_height="@dimen/separator4_height"
+        android:background="@color/separator4" />
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="0.1"
-        android:background="@android:color/black">
+        android:background="@android:color/black"
+        android:id="@+id/objects_count_layout">
 
-        <ListView
-            android:id="@+id/filesList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fastScrollAlwaysVisible="true"
-            android:divider="@null">
-        </ListView>
+        <TableLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/objects_count"
+                    android:textSize="@dimen/actionbar_panel_text_height"
+                    android:textColor="@android:color/white" />
+
+            </TableRow>
+
+        </TableLayout>
 
     </LinearLayout>
 
     <View
-        android:layout_height="@dimen/separator4_height"
-        android:background="@color/separator4" />
+        android:layout_height="@dimen/separator5_height"
+        android:background="@color/separator5" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -211,6 +244,5 @@
         </TableLayout>
 
     </LinearLayout>
-
 
 </TableLayout>

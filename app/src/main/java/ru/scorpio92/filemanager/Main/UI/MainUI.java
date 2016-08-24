@@ -70,6 +70,8 @@ public class MainUI extends Activity implements Callback {
 
     private ListView filesList;
 
+    private LinearLayout objectsCountInCurrPartPanel;
+
     private boolean searchListDisplayed=false; //признак показано ли окно найденных результатов
     private boolean disableFastSearchMode = false; //если true - не передаем в метод обновления директории параметр grep для фильтрации
 
@@ -95,6 +97,8 @@ public class MainUI extends Activity implements Callback {
         createButton = (ImageButton) findViewById(R.id.create_button);
 
         filesList = (ListView) findViewById(R.id.filesList);
+
+        objectsCountInCurrPartPanel = (LinearLayout) findViewById(R.id.objects_count_layout);
 
         //устанавливаем настройки по умолчанию
         PreferenceManager.setDefaultValues(this, R.xml.settings, false);
@@ -1490,6 +1494,7 @@ public class MainUI extends Activity implements Callback {
             @Override
             public void run() {
                 showMemoryUsage(getVarStore().getCurrentDir().getPath());
+                show_hide_objCountInCurrentDir_panel();
                 selector.setChecked(false);//при обновлении списка убираем флажок
                 filesList.setSelection(0); //автоскролинг на перввый элемент
                 getVarStore().getFLA().notifyDataSetChanged(); //обновляем текущее представление
@@ -1506,6 +1511,24 @@ public class MainUI extends Activity implements Callback {
             } else {
                 memStatInCurrPartPanel.setVisibility(View.GONE);
             }
+
+        } catch (Exception e) {
+            Log.e("show_hide_memStatInCurrPartition_panel", null, e);
+        }
+    }
+
+    private void show_hide_objCountInCurrentDir_panel() {
+        try {
+            /*if(SettingsUtils.getBooleanSettings(this, Constants.GENERAL_SETTING_SHOW_MEM_STAT_IN_CURR_PART_KEY)) {
+                memStatInCurrPartPanel.setVisibility(View.VISIBLE);
+            } else {
+                memStatInCurrPartPanel.setVisibility(View.GONE);
+            }*/
+            TextView tv = (TextView) objectsCountInCurrPartPanel.findViewById(R.id.objects_count);
+            tv.setText(
+                    getString(R.string.objects_count_dirs) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir().getPath(), true)) + " " +
+                            getString(R.string.objects_count_files) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir().getPath(), false))
+            );
 
         } catch (Exception e) {
             Log.e("show_hide_memStatInCurrPartition_panel", null, e);

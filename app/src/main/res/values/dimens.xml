@@ -19,5 +19,6 @@
     <dimen name="separator1_height">1dip</dimen>
     <dimen name="separator2_height">1dip</dimen>
     <dimen name="separator3_height">1dip</dimen>
-    <dimen name="separator4_height">2dip</dimen>
+    <dimen name="separator4_height">1dip</dimen>
+    <dimen name="separator5_height">2dip</dimen>
 </resources>
