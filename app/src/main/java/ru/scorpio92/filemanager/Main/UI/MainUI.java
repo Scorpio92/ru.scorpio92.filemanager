@@ -59,14 +59,16 @@ public class MainUI extends Activity implements Callback {
     //получение хранилища переменных
     private VarStore getVarStore() { return (VarStore) this.getApplication(); }
 
-    private ListView filesList;
-
     private CheckBox selector;
     private ImageButton refreshCurrenntDirButton;
     private EditText liveSearch;
     private ImageButton searchButton;
     private ImageButton sortButton;
     private ImageButton createButton;
+
+    private LinearLayout memStatInCurrPartPanel;
+
+    private ListView filesList;
 
     private boolean searchListDisplayed=false; //признак показано ли окно найденных результатов
     private boolean disableFastSearchMode = false; //если true - не передаем в метод обновления директории параметр grep для фильтрации
@@ -82,8 +84,8 @@ public class MainUI extends Activity implements Callback {
 
         setContentView(R.layout.activity_file_explorer);
 
-
-        filesList = (ListView) findViewById(R.id.filesList);
+        memStatInCurrPartPanel = (LinearLayout) findViewById(R.id.memory_usage_current_partition_layout);
+        show_hide_memStatInCurrPartition_panel();
 
         selector = (CheckBox) findViewById(R.id.selector);
         refreshCurrenntDirButton = (ImageButton) findViewById(R.id.refresh_button);
@@ -91,6 +93,8 @@ public class MainUI extends Activity implements Callback {
         searchButton = (ImageButton) findViewById(R.id.search_button);
         sortButton = (ImageButton) findViewById(R.id.sort_button);
         createButton = (ImageButton) findViewById(R.id.create_button);
+
+        filesList = (ListView) findViewById(R.id.filesList);
 
         //устанавливаем настройки по умолчанию
         PreferenceManager.setDefaultValues(this, R.xml.settings, false);
@@ -288,6 +292,7 @@ public class MainUI extends Activity implements Callback {
                     //если были изменены настройки представления, обновляем список чтобы увидеть изменения
                     //Log.w("view_settings_was_ch", String.valueOf(res.getBoolean(Constants.NEED_REFRESH_AFTER_SETTINGS_CHANGE)));
                     if(res.getBoolean(Constants.NEED_REFRESH_AFTER_SETTINGS_CHANGE)) {
+                        show_hide_memStatInCurrPartition_panel();
                         updateFileList(getVarStore().getCurrentDir().getPath());
                     }
                 }
@@ -1262,7 +1267,7 @@ public class MainUI extends Activity implements Callback {
             MainOperationsParams mainOperationsParams = getVarStore().getMainOperationsInstance().getMainOperationsParams();
 
             //если копирование папок в самих себя запрещено - проверяем и блокироуем операцию копирования
-            if(!SettingsUtils.getBooleanSettings(this, Constants.GENEREAL_SETTING_SELF_COPY)) {
+            if(!SettingsUtils.getBooleanSettings(this, Constants.GENERAL_SETTING_SELF_COPY_KEY)) {
                 //если хотя бы один из копируемых объектов (mainOperationsParams.getPaths()) целиком содержит текущий путь - блокируем копирование
                 for (String path : mainOperationsParams.getPaths()) {
                     if (currPath.equals(path)) {
@@ -1392,7 +1397,7 @@ public class MainUI extends Activity implements Callback {
     //если указана настройка "Запоминать последний путь" - открываем последний
     private void initStartPath() {
         try {
-            if(SettingsUtils.getBooleanSettings(this, Constants.GENEREAL_SETTING_SAVE_LAST_PATH_KEY)) {
+            if(SettingsUtils.getBooleanSettings(this, Constants.GENERAL_SETTING_SAVE_LAST_PATH_KEY)) {
                 getVarStore().setHistoryPath(SecondUsageUtils.getLastPath());
                 updateFileList(SecondUsageUtils.getLastPath());
             } else {
@@ -1492,6 +1497,19 @@ public class MainUI extends Activity implements Callback {
             }
         });
 
+    }
+
+    private void show_hide_memStatInCurrPartition_panel() {
+        try {
+            if(SettingsUtils.getBooleanSettings(this, Constants.GENERAL_SETTING_SHOW_MEM_STAT_IN_CURR_PART_KEY)) {
+                memStatInCurrPartPanel.setVisibility(View.VISIBLE);
+            } else {
+                memStatInCurrPartPanel.setVisibility(View.GONE);
+            }
+
+        } catch (Exception e) {
+            Log.e("show_hide_memStatInCurrPartition_panel", null, e);
+        }
     }
 
     ////////////////////////////////////////////////////////////////////////////////////////////////

@@ -290,4 +290,6 @@
     <string name="settings_view_sort_by_name_file_first">По имени (сначала файлы)</string>
     <string name="settings_view_show_hidden">Показывать скрытые объекты</string>
     <string name="settings_view_show_hidden_summary">Показывать скрытие файлы и папки</string>
+    <string name="settings_general_show_current_partition_mem_stat">Использование памяти в текущем разделе</string>
+    <string name="settings_general_show_current_partition_mem_stat_summary">Отображать доп. панель с информацией о размере раздела, кол-ве свободной и используемой памяти</string>
 </resources>

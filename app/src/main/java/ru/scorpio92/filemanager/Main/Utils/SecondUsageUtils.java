@@ -136,7 +136,7 @@ public class SecondUsageUtils {
             als.add(MainDB.GENERAL_TABLE_SETTING_VALUE_COLUMN);
             ArrayList<String> result = DBUtils.select_from_db(MainDB.MAIN_DATABASE_NAME, "SELECT * " +
                     "FROM " + MainDB.GENERAL_TABLE +
-                    " WHERE " + MainDB.GENERAL_TABLE_SETTING_NAME_COLUMN + "=" + "'" + Constants.GENEREAL_SETTING_SAVE_LAST_PATH_KEY + "'", als, false);
+                    " WHERE " + MainDB.GENERAL_TABLE_SETTING_NAME_COLUMN + "=" + "'" + Constants.GENERAL_SETTING_SAVE_LAST_PATH_KEY + "'", als, false);
             return result.get(0);
         } catch (Exception e) {
             Log.e("getLastPath", null, e);
@@ -147,7 +147,7 @@ public class SecondUsageUtils {
     public static void setLastPath(String path) {
         try {
             ContentValues newValues = new ContentValues();
-            String where = MainDB.GENERAL_TABLE_SETTING_NAME_COLUMN + "=" + "'" + Constants.GENEREAL_SETTING_SAVE_LAST_PATH_KEY + "'";
+            String where = MainDB.GENERAL_TABLE_SETTING_NAME_COLUMN + "=" + "'" + Constants.GENERAL_SETTING_SAVE_LAST_PATH_KEY + "'";
             newValues.put(MainDB.GENERAL_TABLE_SETTING_VALUE_COLUMN, path);
             DBUtils.insert_update_delete(MainDB.MAIN_DATABASE_NAME, MainDB.GENERAL_TABLE, newValues, where, DBUtils.ACTION_UPDATE);
             newValues.clear();

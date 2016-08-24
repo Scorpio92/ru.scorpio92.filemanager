@@ -16,6 +16,12 @@
             android:summary="@string/settings_general_allow_self_copy_summary"
             android:key="settings_general_allow_self_copy" />
 
+        <CheckBoxPreference
+            android:title="@string/settings_general_show_current_partition_mem_stat"
+            android:defaultValue="true"
+            android:summary="@string/settings_general_show_current_partition_mem_stat_summary"
+            android:key="settings_general_show_current_partition_mem_stat" />
+
     </PreferenceCategory>
 
     <PreferenceCategory

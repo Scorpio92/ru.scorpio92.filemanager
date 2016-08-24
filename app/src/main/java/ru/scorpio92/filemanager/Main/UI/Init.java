@@ -6,8 +6,6 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.Window;
 import android.widget.Toast;
 
 import java.io.File;
@@ -110,7 +108,7 @@ public class Init extends Activity {
             newValues.clear();
 
             //записываем текущий путь
-            newValues.put(MainDB.GENERAL_TABLE_SETTING_NAME_COLUMN, Constants.GENEREAL_SETTING_SAVE_LAST_PATH_KEY);
+            newValues.put(MainDB.GENERAL_TABLE_SETTING_NAME_COLUMN, Constants.GENERAL_SETTING_SAVE_LAST_PATH_KEY);
             newValues.put(MainDB.GENERAL_TABLE_SETTING_VALUE_COLUMN, Constants.DEFAULT_HOME_PATH);
             DBUtils.insert_update_delete(MainDB.MAIN_DATABASE_NAME, MainDB.GENERAL_TABLE, newValues, null, DBUtils.ACTION_INSERT);
             newValues.clear();

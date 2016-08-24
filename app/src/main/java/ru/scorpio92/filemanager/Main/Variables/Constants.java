@@ -33,9 +33,11 @@ public class Constants  {
     public static final int SETTINGS_ACTIVITY_REQUEST_CODE = 0; //когда запускаем активность настроек
     public static final String NEED_REFRESH_AFTER_SETTINGS_CHANGE="need_refresh"; //когда запускаем активность настроек
     //ключ для настройки сохранения последнего пути
-    public static final String GENEREAL_SETTING_SAVE_LAST_PATH_KEY="settings_general_save_last_path";
+    public static final String GENERAL_SETTING_SAVE_LAST_PATH_KEY ="settings_general_save_last_path";
     //копирование папок в самих себя
-    public static final String GENEREAL_SETTING_SELF_COPY="settings_general_allow_self_copy";
+    public static final String GENERAL_SETTING_SELF_COPY_KEY ="settings_general_allow_self_copy";
+    //доп панель со статистикой по исп памяти в текущ разделе
+    public static final String GENERAL_SETTING_SHOW_MEM_STAT_IN_CURR_PART_KEY = "settings_general_show_current_partition_mem_stat";
     //представление и сортировка
     public static final String SORT_SETTING_KEY="settings_view_sort";
     public static final int SORT_BY_NAME=0;
