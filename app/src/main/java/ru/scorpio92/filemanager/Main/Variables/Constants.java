@@ -53,6 +53,7 @@ public class Constants  {
     public static final String VIEW_SHOW_DIR_SIZE_KEY="settings_view_show_dirs_size";
     public static final String VIEW_SHOW_FILE_SIZE_KEY="settings_view_show_files_size";
     public static final String VIEW_SHOW_CHANGE_TIME_KEY="settings_view_show_change_time";
+    public static final String VIEW_FULL_CHANGE_TIME_FORMAT_KEY="settings_view_change_time_with_gmt";
     public static final String VIEW_SHOW_SELECTED_FILES_SIZE_KEY="settings_view_show_selected_files_size";
     //скрытые файлы
     public static final String VIEW_SHOW_HIDDEN_KEY = "settings_view_show_hidden";

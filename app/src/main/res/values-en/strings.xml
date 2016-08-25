@@ -271,4 +271,6 @@
     <string name="objects_count_files">Files:</string>
     <string name="settings_general_show_count_objects_panel">Show objects count</string>
     <string name="settings_general_show_count_objects_panel_summary">Show dirs count and files count in current directory</string>
+    <string name="settings_view_change_time_with_gmt">Full date format</string>
+    <string name="settings_view_change_time_with_gmt_summary">Change time format: yyyy.MM.dd HH:mm:ss GMT</string>
 </resources>

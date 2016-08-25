@@ -8,7 +8,8 @@ import java.util.Date;
  */
 public class Object {
 
-    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z");
+    private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss");
+    private final SimpleDateFormat dateFormat_with_GMT = new SimpleDateFormat("yyyy.MM.dd HH:mm:ss z");
 
     public static final String TYPE_DIR = "d";
     public static final String TYPE_SYMLINK_DIR = "ld";
@@ -24,6 +25,17 @@ public class Object {
         this.path = path;
         this.type = type;
         this.date = dateFormat.format(new Date(date));
+        this.size = size;
+    }
+
+    public Object(String path, String type, String date, long size, boolean full_date) {
+        this.path = path;
+        this.type = type;
+        if(full_date) {
+            this.date = dateFormat_with_GMT.format(new Date(date));
+        } else {
+            this.date = dateFormat.format(new Date(date));
+        }
         this.size = size;
     }
 

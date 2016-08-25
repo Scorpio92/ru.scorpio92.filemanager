@@ -90,6 +90,8 @@ public class FileUtils {
 
             Dir dir = new Dir(path);
 
+            boolean full_date_format = SettingsUtils.getBooleanSettings(VarStore.getAppContext(), Constants.VIEW_FULL_CHANGE_TIME_FORMAT_KEY);
+
             for (String s:rawList) {
                 String[] o_mas = s.split(";");
                 String o = o_mas[0];
@@ -108,7 +110,7 @@ public class FileUtils {
                     size = f.length();
                 }
 
-                Object object = new Object(o, type, new Date(f.lastModified()).toString(), size);
+                Object object = new Object(o, type, new Date(f.lastModified()).toString(), size, full_date_format);
                 dir.getObjects().add(object);
             }
             long endTime = System.nanoTime();

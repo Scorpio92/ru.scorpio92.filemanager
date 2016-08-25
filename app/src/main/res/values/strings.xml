@@ -296,4 +296,6 @@
     <string name="objects_count_files">Файлов:</string>
     <string name="settings_general_show_count_objects_panel">Показывать количество объектов</string>
     <string name="settings_general_show_count_objects_panel_summary">Показывать количество директорий и файлов в текущей директории</string>
+    <string name="settings_view_change_time_with_gmt">Полный формат времени</string>
+    <string name="settings_view_change_time_with_gmt_summary">Время изменения в формате: yyyy.MM.dd HH:mm:ss GMT</string>
 </resources>
