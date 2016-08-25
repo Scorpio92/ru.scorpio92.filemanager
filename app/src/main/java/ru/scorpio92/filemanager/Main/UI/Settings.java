@@ -33,7 +33,8 @@ public class Settings extends PreferenceActivity implements SharedPreferences.On
                 s.equals(Constants.VIEW_SHOW_DIR_SIZE_KEY) ||
                 s.equals(Constants.VIEW_SHOW_FILE_SIZE_KEY) ||
                 s.equals(Constants.VIEW_SHOW_HIDDEN_KEY) ||
-                s.equals(Constants.GENERAL_SETTING_SHOW_MEM_STAT_IN_CURR_PART_KEY))
+                s.equals(Constants.GENERAL_SETTING_SHOW_MEM_STAT_IN_CURR_PART_KEY) ||
+                s.equals(Constants.GENERAL_SETTING_SHOW_OBJECTS_COUNT_IN_CURRENT_DIR_KEY))
         {
             //view_settings_was_changed = true;
             setResult();

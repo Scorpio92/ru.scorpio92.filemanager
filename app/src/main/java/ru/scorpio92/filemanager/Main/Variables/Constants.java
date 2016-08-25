@@ -38,6 +38,8 @@ public class Constants  {
     public static final String GENERAL_SETTING_SELF_COPY_KEY ="settings_general_allow_self_copy";
     //доп панель со статистикой по исп памяти в текущ разделе
     public static final String GENERAL_SETTING_SHOW_MEM_STAT_IN_CURR_PART_KEY = "settings_general_show_current_partition_mem_stat";
+    //доп панель: кол-во директорий и файлов текущей директории
+    public static final String GENERAL_SETTING_SHOW_OBJECTS_COUNT_IN_CURRENT_DIR_KEY = "settings_general_show_count_objects_panel";
     //представление и сортировка
     public static final String SORT_SETTING_KEY="settings_view_sort";
     public static final int SORT_BY_NAME=0;

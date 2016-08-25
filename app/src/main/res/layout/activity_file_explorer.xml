@@ -75,13 +75,14 @@
     <View
         android:layout_height="@dimen/separator1_height"
         android:background="@color/separator1"
-        android:id="@+id/separator1"/>
+        android:id="@+id/separator1"
+        android:visibility="gone"/>
 
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background"
+        android:background="@color/blue_sky"
         android:id="@+id/memory_usage_current_partition_layout">
 
         <TableLayout
@@ -98,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/memory_usage_current_partition"
                     android:textSize="@dimen/actionbar_panel_text_height"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/black" />
 
             </TableRow>
 
@@ -127,78 +128,6 @@
         </ListView>
 
     </LinearLayout>
-
-    <View
-        android:layout_height="@dimen/separator3_height"
-        android:background="@color/separator3"
-        android:id="@+id/separator3"/>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:id="@+id/selected_info_layout">
-
-        <TableLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/selected_info"
-                    android:textSize="@dimen/actionbar_panel_text_height"
-                    android:visibility="gone"
-                    android:textColor="@android:color/white" />
-
-            </TableRow>
-
-        </TableLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_height="@dimen/separator4_height"
-        android:background="@color/separator4" />
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/black"
-        android:id="@+id/objects_count_layout">
-
-        <TableLayout
-            android:orientation="vertical"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-
-            <TableRow
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/objects_count"
-                    android:textSize="@dimen/actionbar_panel_text_height"
-                    android:textColor="@android:color/white" />
-
-            </TableRow>
-
-        </TableLayout>
-
-    </LinearLayout>
-
-    <View
-        android:layout_height="@dimen/separator5_height"
-        android:background="@color/separator5" />
 
     <LinearLayout
         android:orientation="horizontal"
@@ -238,11 +167,84 @@
                     android:height="@dimen/buttons_height"
                     android:textSize="@dimen/buttons_text_height"
                     android:onClick="onPasteMoveClick"
-               />
+                    />
             </TableRow>
 
         </TableLayout>
 
     </LinearLayout>
+
+    <View
+        android:layout_height="@dimen/separator3_height"
+        android:background="@color/separator3"
+        android:id="@+id/separator3"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_sky"
+        android:id="@+id/selected_info_layout">
+
+        <TableLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/selected_info"
+                    android:textSize="@dimen/actionbar_panel_text_height"
+                    android:visibility="gone"
+                    android:textColor="@android:color/black" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="@dimen/separator4_height"
+        android:background="@color/separator4"
+        android:visibility="gone"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blue_sky"
+        android:id="@+id/objects_count_layout">
+
+        <TableLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+
+            <TableRow
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/objects_count"
+                    android:textSize="@dimen/actionbar_panel_text_height"
+                    android:textColor="@android:color/black" />
+
+            </TableRow>
+
+        </TableLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_height="@dimen/separator5_height"
+        android:background="@color/separator5" />
 
 </TableLayout>

@@ -269,4 +269,6 @@
     <string name="settings_general_show_current_partition_mem_stat_summary">Show additional panel with info about partition size, available and used memory</string>
     <string name="objects_count_dirs">Dirs:</string>
     <string name="objects_count_files">Files:</string>
+    <string name="settings_general_show_count_objects_panel">Show objects count</string>
+    <string name="settings_general_show_count_objects_panel_summary">Show dirs count and files count in current directory</string>
 </resources>

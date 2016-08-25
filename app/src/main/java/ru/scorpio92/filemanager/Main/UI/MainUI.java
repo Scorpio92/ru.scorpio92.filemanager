@@ -1107,8 +1107,8 @@ public class MainUI extends Activity implements Callback {
             TextView mTextView = (TextView) this.findViewById(R.id.memory_usage_current_partition);
             try {
                 String[] mas = FileUtils.getSpaceUsage(path).get(0).split(" ");
-                mTextView.setText(getString(R.string.memory_usage_point_size) + ": " + mas[0] + "  "
-                        + getString(R.string.memory_usage_point_usage) + ": " + mas[1] + "  "
+                mTextView.setText(getString(R.string.memory_usage_point_size) + ": " + mas[0] + ",  "
+                        + getString(R.string.memory_usage_point_usage) + ": " + mas[1] + ",  "
                         + getString(R.string.memory_usage_available) + ": " + mas[2]);
             } catch (Exception ee) {
                 mTextView.setText("no info");
@@ -1217,7 +1217,7 @@ public class MainUI extends Activity implements Callback {
             final TextView mTextView = (TextView) this.findViewById(R.id.selected_info);
             if(getVarStore().getCurrentDir().getSelectedObjects().size() >0) {
                 if(SettingsUtils.getBooleanSettings(this, Constants.VIEW_SHOW_SELECTED_FILES_SIZE_KEY)) { //если нужно показывать размер выделенных файлов
-                    mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjects().size()) + " " + getString(R.string.selected_full_size) + ": " +getString(R.string.selected_size_calculating));
+                    mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjects().size()) + ", " + getString(R.string.selected_full_size) + ": " +getString(R.string.selected_size_calculating));
                     Thread thread = new Thread() {
                         @Override
                         public void run() {
@@ -1230,7 +1230,7 @@ public class MainUI extends Activity implements Callback {
                                 MainUI.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjects().size()) +" " + getString(R.string.selected_full_size) + ": " + getVarStore().getMainOperationsTools().getRightSize(final_size));
+                                        mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjects().size()) +", " + getString(R.string.selected_full_size) + ": " + getVarStore().getMainOperationsTools().getRightSize(final_size));
                                     }
                                 });
                             } catch (Exception e) {
@@ -1519,20 +1519,17 @@ public class MainUI extends Activity implements Callback {
 
     private void show_hide_objCountInCurrentDir_panel() {
         try {
-            /*if(SettingsUtils.getBooleanSettings(this, Constants.GENERAL_SETTING_SHOW_MEM_STAT_IN_CURR_PART_KEY)) {
-                memStatInCurrPartPanel.setVisibility(View.VISIBLE);
+            if(SettingsUtils.getBooleanSettings(this, Constants.GENERAL_SETTING_SHOW_OBJECTS_COUNT_IN_CURRENT_DIR_KEY)) {
+                TextView tv = (TextView) objectsCountInCurrPartPanel.findViewById(R.id.objects_count);
+                tv.setText(
+                        getString(R.string.objects_count_dirs) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir(), true)) + ", " +
+                                getString(R.string.objects_count_files) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir(), false))
+                );
+                objectsCountInCurrPartPanel.setVisibility(View.VISIBLE);
             } else {
-                memStatInCurrPartPanel.setVisibility(View.GONE);
-            }*/
-            TextView tv = (TextView) objectsCountInCurrPartPanel.findViewById(R.id.objects_count);
-            /*tv.setText(
-                    getString(R.string.objects_count_dirs) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir().getPath(), true)) + " " +
-                            getString(R.string.objects_count_files) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir().getPath(), false))
-            );*/
-            tv.setText(
-                    getString(R.string.objects_count_dirs) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir(), true)) + " " +
-                            getString(R.string.objects_count_files) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir(), false))
-            );
+                objectsCountInCurrPartPanel.setVisibility(View.GONE);
+            }
+
 
         } catch (Exception e) {
             Log.e("show_hide_memStatInCurrPartition_panel", null, e);

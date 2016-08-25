@@ -294,4 +294,6 @@
     <string name="settings_general_show_current_partition_mem_stat_summary">Отображать доп. панель с информацией о размере раздела, кол-ве свободной и используемой памяти</string>
     <string name="objects_count_dirs">Директорий:</string>
     <string name="objects_count_files">Файлов:</string>
+    <string name="settings_general_show_count_objects_panel">Показывать количество объектов</string>
+    <string name="settings_general_show_count_objects_panel_summary">Показывать количество директорий и файлов в текущей директории</string>
 </resources>

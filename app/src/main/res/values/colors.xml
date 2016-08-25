@@ -8,9 +8,9 @@
     <color name="matrix">#ff0af403</color>
 
     <color name="separator0">@color/blue_sky</color>
-    <color name="separator1">@color/blue_sky</color>
+    <color name="separator1">@color/background</color>
     <color name="separator2">@color/blue_sky</color>
-    <color name="separator3">@color/blue_sky</color>
+    <color name="separator3">@color/background</color>
     <color name="separator4">@color/blue_sky</color>
     <color name="separator5">@color/blue_sky</color>
 </resources>

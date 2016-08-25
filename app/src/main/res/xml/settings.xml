@@ -22,6 +22,12 @@
             android:summary="@string/settings_general_show_current_partition_mem_stat_summary"
             android:key="settings_general_show_current_partition_mem_stat" />
 
+        <CheckBoxPreference
+            android:title="@string/settings_general_show_count_objects_panel"
+            android:defaultValue="true"
+            android:summary="@string/settings_general_show_count_objects_panel_summary"
+            android:key="settings_general_show_count_objects_panel" />
+
     </PreferenceCategory>
 
     <PreferenceCategory
