@@ -1525,9 +1525,13 @@ public class MainUI extends Activity implements Callback {
                 memStatInCurrPartPanel.setVisibility(View.GONE);
             }*/
             TextView tv = (TextView) objectsCountInCurrPartPanel.findViewById(R.id.objects_count);
-            tv.setText(
+            /*tv.setText(
                     getString(R.string.objects_count_dirs) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir().getPath(), true)) + " " +
                             getString(R.string.objects_count_files) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir().getPath(), false))
+            );*/
+            tv.setText(
+                    getString(R.string.objects_count_dirs) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir(), true)) + " " +
+                            getString(R.string.objects_count_files) + " " + String.valueOf(FileUtils.getObjectsCountInDir(getVarStore().getCurrentDir(), false))
             );
 
         } catch (Exception e) {

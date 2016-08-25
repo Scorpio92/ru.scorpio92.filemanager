@@ -471,4 +471,27 @@ public class FileUtils {
         }
         return 0;
     }
+
+    public static Integer getObjectsCountInDir(Dir dir, boolean calcDirsCount) {
+        try {
+            int dirs_count=0;
+            int files_cont=0;
+            for (Object o:dir.getObjects()) {
+                if(o.type.equals(Object.TYPE_DIR) || o.type.equals(Object.TYPE_SYMLINK_DIR)) {
+                    dirs_count++;
+                }
+                if(o.type.equals(Object.TYPE_FILE) || o.type.equals(Object.TYPE_SYMLINK_FILE)) {
+                    files_cont++;
+                }
+            }
+            if(calcDirsCount) {
+                return dirs_count;
+            } else {
+                return files_cont;
+            }
+        } catch (Exception e) {
+            Log.e("getObjectsCountInDir", null, e);
+        }
+        return 0;
+    }
 }
