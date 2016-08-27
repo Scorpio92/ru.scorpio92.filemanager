@@ -41,6 +41,7 @@ public class ArchPacked extends Fragment {
         //скрываем полоски memory_usage_current_partition_layout и selected_info_layout
         ((LinearLayout) ac.findViewById(R.id.memory_usage_current_partition_layout)).setVisibility(View.GONE);
         ((LinearLayout) ac.findViewById(R.id.selected_info_layout)).setVisibility(View.GONE);
+        ((LinearLayout) ac.findViewById(R.id.objects_count_layout)).setVisibility(View.GONE);
         ((View) ac.findViewById(R.id.separator0)).setVisibility(View.GONE);
         ((View) ac.findViewById(R.id.separator1)).setVisibility(View.GONE);
         ((View) ac.findViewById(R.id.separator2)).setVisibility(View.GONE);
