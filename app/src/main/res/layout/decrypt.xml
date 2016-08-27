@@ -8,7 +8,8 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/decrypt_password_label"
-        android:text="@string/encrypt_password_label" />
+        android:text="@string/encrypt_password_label"
+        android:paddingLeft="10dp" />
 
     <EditText
         android:layout_width="match_parent"

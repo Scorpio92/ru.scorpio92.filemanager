@@ -525,9 +525,6 @@ public class MainUI extends Activity implements Callback {
         try {
             AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
 
-            LayoutInflater inflater = getLayoutInflater();
-            View dialoglayout = inflater.inflate(R.layout.favorite_path, null);
-
             if(isAdd) {
                 alertDialog.setTitle(getString(R.string.favorite_dialog_add_tittle));
                 alertDialog.setMessage(getString(R.string.favorite_dialog_add_body));
@@ -540,8 +537,6 @@ public class MainUI extends Activity implements Callback {
             }
 
             final EditText input = new EditText(this);
-
-            alertDialog.setView(dialoglayout);
 
             if(isAdd) {
                 LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
@@ -1053,23 +1048,8 @@ public class MainUI extends Activity implements Callback {
             TableLayout table = (TableLayout) dialoglayout.findViewById(R.id.memory_usage_table_layout);
             TableRow row;
 
-            //инфо о карте памяти
-            TextView sd = (TextView) dialoglayout.findViewById(R.id.memory_usage_ext_sd);
-            TextView sdSize = (TextView) dialoglayout.findViewById(R.id.memory_usage_point_ext_sd_size);
-            TextView sdUse = (TextView) dialoglayout.findViewById(R.id.memory_usage_point_ext_sd_usage);
-            TextView sdAvailable = (TextView) dialoglayout.findViewById(R.id.memory_usage_point_ext_sd_available);
-
-            ArrayList<String> memStat = FileUtils.getSpaceUsage(System.getenv("EXTERNAL_STORAGE"));
-            if (!memStat.isEmpty()) {
-                String[] mas = memStat.get(0).split(" ");
-                sd.setText(getString(R.string.memory_usage_ext_sd) + "  ");
-                sdSize.setText(mas[0] + "  ");
-                sdUse.setText(mas[1] + "  ");
-                sdAvailable.setText(mas[2] + "  ");
-            }
-
             //получаем статистику по остальным разделам
-            memStat = FileUtils.getSpaceUsage(null);
+            ArrayList<String> memStat = FileUtils.getSpaceUsage(null);
 
             if (!memStat.isEmpty()) {
                 for (int i = 0; i < memStat.size(); i++) {
@@ -1079,12 +1059,14 @@ public class MainUI extends Activity implements Callback {
                     TextView t = new TextView(this);
                     t.setText(mas[3] + "  ");
                     t.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.memory_usage_dialog_text_height));
+                    t.setPadding(10,0,0,0);
                     row.addView(t);
                     for(int j=0; j< 3; j++) {
                         t = new TextView(this);
                         t.setText(mas[j] + "  ");
                         t.setGravity(Gravity.CENTER);
                         t.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimension(R.dimen.memory_usage_dialog_text_height));
+                        t.setPadding(10,0,0,0);
                         row.addView(t);
                     }
                     table.addView(row, new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT));

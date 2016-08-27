@@ -14,63 +14,32 @@
             android:layout_height="wrap_content"
             android:text="@string/memory_usage_mount_point"
             android:textSize="12sp"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:paddingLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memory_usage_point_size"
             android:textSize="12sp"
-            android:layout_column="1" />
+            android:layout_column="1"
+            android:paddingLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memory_usage_point_usage"
             android:textSize="12sp"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:paddingLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/memory_usage_available"
             android:textSize="12sp"
-            android:layout_column="3" />
-
-    </TableRow>
-
-
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/memory_usage_ext_sd"
-            android:textSize="12sp"
-            android:layout_column="0" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/memory_usage_point_ext_sd_size"
-            android:textSize="12sp"
-            android:layout_column="1" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/memory_usage_point_ext_sd_usage"
-            android:textSize="12sp"
-            android:layout_column="2" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/memory_usage_point_ext_sd_available"
-            android:textSize="12sp"
-            android:layout_column="3" />
+            android:layout_column="3"
+            android:paddingLeft="10dp" />
 
     </TableRow>
 
@@ -85,7 +54,8 @@
             android:text="@string/memory_usage_point_no_info"
             android:id="@+id/memory_usage_point_no_info"
             android:textSize="12sp"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:paddingLeft="10dp" />
 
     </LinearLayout>
 

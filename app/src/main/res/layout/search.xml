@@ -7,7 +7,8 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/search_dialog_search_file_label"/>
+        android:text="@string/search_dialog_search_file_label"
+        android:paddingLeft="10dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -24,7 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/search_dialog_search_path_label"
-        android:id="@+id/searchPathLabel"/>
+        android:id="@+id/searchPathLabel"
+        android:paddingLeft="10dp" />
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

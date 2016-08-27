@@ -7,7 +7,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/zip_dialog_name_input" />
+        android:text="@string/zip_dialog_name_input"
+        android:paddingLeft="10dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -18,7 +19,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/compressLevel" />
+        android:text="@string/compressLevel"
+        android:paddingLeft="10dp" />
 
     <Spinner
         android:layout_width="match_parent"
@@ -41,7 +43,8 @@
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/passwordLabel"
         android:id="@+id/passwordLabel"
-        android:visibility="invisible" />
+        android:visibility="invisible"
+        android:paddingLeft="10dp" />
 
     <EditText
         android:layout_width="match_parent"
@@ -70,7 +73,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="@string/splitLabel" />
+        android:text="@string/splitLabel"
+        android:paddingLeft="10dp" />
 
     <Spinner
         android:layout_width="match_parent"

@@ -13,7 +13,8 @@
             android:text="@string/edit_permissions_read_permission_label"
             android:id="@+id/edit_permissions_read_permission_label"
             android:textSize="12sp"
-            android:layout_column="2" />
+            android:layout_column="2"
+            android:paddingLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -21,7 +22,8 @@
             android:text="@string/edit_permissions_write_permission_label"
             android:id="@+id/edit_permissions_write_permission_label"
             android:textSize="12sp"
-            android:layout_column="4" />
+            android:layout_column="4"
+            android:paddingLeft="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +31,8 @@
             android:text="@string/edit_permissions_execute_permission_label"
             android:id="@+id/edit_permissions_execute_permission_label"
             android:textSize="12sp"
-            android:layout_column="6" />
+            android:layout_column="6"
+            android:paddingLeft="10dp" />
 
     </TableRow>
 
@@ -44,7 +47,8 @@
             android:text="@string/edit_permissions_owner_label"
             android:id="@+id/edit_permissions_owner_label"
             android:textSize="12sp"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:paddingLeft="10dp" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -76,7 +80,8 @@
             android:text="@string/edit_permissions_group_label"
             android:id="@+id/edit_permissions_group_label"
             android:textSize="12sp"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:paddingLeft="10dp" />
 
         <CheckBox
             android:layout_width="wrap_content"
@@ -108,7 +113,8 @@
             android:text="@string/edit_permissions_others_label"
             android:id="@+id/edit_permissions_others_label"
             android:textSize="12sp"
-            android:layout_column="0" />
+            android:layout_column="0"
+            android:paddingLeft="10dp" />
 
         <CheckBox
             android:layout_width="wrap_content"
