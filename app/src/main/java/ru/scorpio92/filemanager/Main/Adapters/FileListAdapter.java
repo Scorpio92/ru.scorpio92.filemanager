@@ -156,21 +156,22 @@ public class FileListAdapter extends BaseAdapter {
             if (showChangeTime == null)
                 showChangeTime = SettingsUtils.getBooleanSettings(context, Constants.VIEW_SHOW_CHANGE_TIME_KEY);
 
-            TextView fileDate = (TextView) convertView.findViewById(R.id.file_date);
-            TextView fileSize = (TextView) convertView.findViewById(R.id.file_size);
+            TextView fileProp = (TextView) convertView.findViewById(R.id.fileProp);
             String date = "";
             String size = "";
+            String prop = "";
 
             if (showChangeTime) {
-                date = varStore.getCurrentDir().getObjects().get(position).date;
+                date = context.getString(R.string.file_list_changed_prop) + " " + varStore.getCurrentDir().getObjects().get(position).date;
             }
 
             if ((fileType.equals(Constants.OBJECT_TYPE_DIR) && showDirSize) || (fileType.equals(Constants.OBJECT_TYPE_FILE) && showFileSize)) {
-                size = varStore.getMainOperationsTools().getRightSize(varStore.getCurrentDir().getObjects().get(position).size);
+                size = context.getString(R.string.file_list_size_prop) + " " + varStore.getMainOperationsTools().getRightSize(varStore.getCurrentDir().getObjects().get(position).size);
             }
 
-            fileDate.setText(date);
-            fileSize.setText(size);
+            prop = date + "  " + size;
+
+            fileProp.setText(prop.trim());
 
         } catch (Exception e) {
             Log.e("getView", null, e);

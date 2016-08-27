@@ -34,6 +34,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/fileName"
                 android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="@android:color/white"
                 android:textIsSelectable="false"
                 android:clickable="false"
                 android:textSize="@dimen/filelist_filename_text_height" />
@@ -44,36 +45,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TableLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:id="@+id/file_explorer_properties_table">
-
-                <TableRow
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:id="@+id/file_date"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textSize="@dimen/filelist_secondary_text_height"
-                        android:singleLine="true"
-                        android:layout_weight="1"
-                        />
-
-                    <TextView
-                        android:id="@+id/file_size"
-                        android:textAppearance="?android:attr/textAppearanceSmall"
-                        android:textSize="@dimen/filelist_secondary_text_height"
-                        android:layout_width="wrap_content"
-                        android:singleLine="true"
-                        />
-
-                </TableRow>
-
-            </TableLayout>
+            <TextView
+                android:id="@+id/fileProp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="@dimen/filelist_secondary_text_height"
+                android:textColor="@android:color/white"
+                android:singleLine="true"
+                android:layout_weight="1" />
 
         </TableRow>
 

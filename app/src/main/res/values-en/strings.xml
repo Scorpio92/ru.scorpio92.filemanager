@@ -273,4 +273,6 @@
     <string name="settings_general_show_count_objects_panel_summary">Show dirs count and files count in current directory</string>
     <string name="settings_view_change_time_with_gmt">Full date format</string>
     <string name="settings_view_change_time_with_gmt_summary">Change time format: yyyy.MM.dd HH:mm:ss GMT</string>
+    <string name="file_list_changed_prop">Changed:</string>
+    <string name="file_list_size_prop">Size:</string>
 </resources>
