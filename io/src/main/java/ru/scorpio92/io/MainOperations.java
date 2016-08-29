@@ -379,10 +379,13 @@ public class MainOperations {
 
         try {
             //вычисляем размер копируемых объектов и сравниваем его с оствшимся местом в distPath
-            /*long totalSize=0;
-            long freeSpace =0;
+            //работать корректно будет только для объктов доступных на чтение (системная папка может не определиться как папка и ее размер будет равен 0)
+            long totalSize=0;
 
-            for(String path:paths) {
+            for(String path:mainOperationsParams.getPaths()) { //берем именно не полный список объектов (paths), а mainOperationsParams.getPaths() - список выбранных объктов
+                if(stop) {
+                    return;
+                }
                 if(new File(path).isFile()) {
                     totalSize+=mainOperationsTools.getObjectSize(path, true);
                 } else {
@@ -392,13 +395,13 @@ public class MainOperations {
 
             Log.w("totalSize", Long.toString(totalSize));
 
-            freeSpace = mainOperationsTools.getFreeSpaceOnMountPoint(distPath);
+            long freeSpace = mainOperationsTools.getFreeSpaceOnMountPoint(distPath);
             Log.w("totalSize", Long.toString(freeSpace));
 
-            if(totalSize>= freeSpace) {
+            if(totalSize > freeSpace) {
                 status = MainOperationsConstants.NO_SPACE_IN_TARGET;
                 return;
-            }*/
+            }
 
 
             //проверяем на копирование в себя
