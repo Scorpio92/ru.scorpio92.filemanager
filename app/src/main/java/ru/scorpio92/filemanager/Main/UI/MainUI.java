@@ -35,8 +35,8 @@ import android.widget.Toast;
 import java.io.File;
 import java.util.ArrayList;
 
-import ru.scorpio92.filemanager.Main.Types.Callback;
-import ru.scorpio92.filemanager.Main.Types.Dir;
+import ru.scorpio92.filemanager.Main.Types.*;
+import ru.scorpio92.filemanager.Main.Types.Object;
 import ru.scorpio92.filemanager.Main.UI.Intro.Intro;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Terminal.Terminal;
@@ -1206,7 +1206,14 @@ public class MainUI extends Activity implements Callback {
                             try {
                                 long tmp=0;
                                 for(int i=0; i<getVarStore().getCurrentDir().getSelectedObjects().size();i++) {
-                                    tmp+=getVarStore().getMainOperationsTools().getObjectSize(getVarStore().getCurrentDir().getObjects().get(getVarStore().getCurrentDir().getSelectedObjects().get(i)).path, false);
+                                    Object o = getVarStore().getCurrentDir().getObjects().get(getVarStore().getCurrentDir().getSelectedObjects().get(i));
+                                    String path = o.path;
+                                    String type = o.type;
+                                    if(type.equals(Object.TYPE_DIR) || type.equals(Object.TYPE_SYMLINK_DIR)) {
+                                        tmp += getVarStore().getMainOperationsTools().getObjectSize(path, false);
+                                    } else {
+                                        tmp += getVarStore().getMainOperationsTools().getObjectSize(path, true);
+                                    }
                                 }
                                 final long final_size=tmp;
                                 MainUI.this.runOnUiThread(new Runnable() {
