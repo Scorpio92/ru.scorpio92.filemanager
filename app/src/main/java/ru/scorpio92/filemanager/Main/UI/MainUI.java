@@ -1262,49 +1262,34 @@ public class MainUI extends Activity implements Callback {
             String currPath = getVarStore().getCurrentDir().getPath(); //директория куда копируем
             MainOperationsParams mainOperationsParams = getVarStore().getMainOperationsInstance().getMainOperationsParams();
 
-            //если копирование папок в самих себя запрещено - проверяем и блокироуем операцию копирования
-            if(!SettingsUtils.getBooleanSettings(this, Constants.GENERAL_SETTING_SELF_COPY_KEY)) {
-                //если хотя бы один из копируемых объектов (mainOperationsParams.getPaths()) целиком содержит текущий путь - блокируем копирование
-                for (String path : mainOperationsParams.getPaths()) {
-                    if (currPath.equals(path)) {
-                        stop = true;
-                        break;
-                    }
-                }
-            }
+            mainOperationsParams.setDistFile(currPath);
 
-            if(stop) {
-                Toast.makeText(getApplicationContext(), getString(R.string.copy_dialog_copy_move_in_self_warning), Toast.LENGTH_SHORT).show();
-            } else {
-                mainOperationsParams.setRunInThread(true);
-                mainOperationsParams.setDistFile(currPath);
+            LinearLayout pview = getVarStore().getDialogPresenter().getHorizontalPBView();
 
-                LinearLayout pview = getVarStore().getDialogPresenter().getHorizontalPBView();
+            ProgressBar progressBar = (ProgressBar) pview.findViewById(R.id.OperationProgress);
+            TextView timer = (TextView) pview.findViewById(R.id.durationTime);
 
-                ProgressBar progressBar = (ProgressBar) pview.findViewById(R.id.OperationProgress);
-                TextView timer = (TextView) pview.findViewById(R.id.durationTime);
+            MainOperationsDialogParams mainOperationsDialogParams = new MainOperationsDialogParams(
+                    MainUI.this,
+                    getVarStore().getDialogPresenter().getAlertDialog(MainUI.this, pview)
+            );
 
-                MainOperationsDialogParams mainOperationsDialogParams = new MainOperationsDialogParams(
-                        MainUI.this,
-                        getVarStore().getDialogPresenter().getAlertDialog(MainUI.this, pview)
-                );
+            mainOperationsDialogParams.setProgressBar(progressBar);
+            mainOperationsDialogParams.setTimer(timer);
+            mainOperationsDialogParams.setNegativeButtonText(getString(R.string.negative_button));
+            mainOperationsDialogParams.setSuccessText(getString(R.string.operation_result_success));
+            mainOperationsDialogParams.setFailText(getString(R.string.operation_result_fail));
+            mainOperationsDialogParams.setMethod(MainUI.class.getMethod("refreshCurrentDir"));
 
-                mainOperationsDialogParams.setProgressBar(progressBar);
-                mainOperationsDialogParams.setTimer(timer);
-                mainOperationsDialogParams.setNegativeButtonText(getString(R.string.negative_button));
-                mainOperationsDialogParams.setSuccessText(getString(R.string.operation_result_success));
-                mainOperationsDialogParams.setFailText(getString(R.string.operation_result_fail));
-                mainOperationsDialogParams.setMethod(MainUI.class.getMethod("refreshCurrentDir"));
+            //mainOperations.showProgressDialog(mainOperationsDialogParams);
+            mainOperationsParams.setMainOperationsDialogParams(mainOperationsDialogParams);
 
-                //mainOperations.showProgressDialog(mainOperationsDialogParams);
-                mainOperationsParams.setMainOperationsDialogParams(mainOperationsDialogParams);
+            MainOperations mainOperations = new MainOperations(mainOperationsParams);
 
-                MainOperations mainOperations = new MainOperations(mainOperationsParams);
+            getVarStore().setMainOperationsInstance(mainOperations);
 
-                getVarStore().setMainOperationsInstance(mainOperations);
+            mainOperations.start();
 
-                mainOperations.start();
-            }
             getVarStore().getDialogPresenter().show_hide_additionalPanel(this.findViewById(android.R.id.content), false, -1);
         } catch (Exception e) {
             Log.e("onPasteMoveClick", null, e);

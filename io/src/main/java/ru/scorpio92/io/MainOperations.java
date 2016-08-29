@@ -401,6 +401,23 @@ public class MainOperations {
             }*/
 
 
+            //проверяем на копирование в себя
+            if(!mainOperationsParams.isAllowInselfCopy()) {
+                //если хотя бы один из копируемых объектов (mainOperationsParams.getPaths()) целиком содержит текущий путь - блокируем копирование
+                for (String path : paths) {
+                    if (distPath.equals(path)) {
+                        status = MainOperationsConstants.ERROR;
+                        stop = true;
+                        break;
+                    }
+                }
+            }
+
+            if (stop) {
+                return;
+            }
+
+
             //forRename = new ArrayList<String>();
             forDelete = new ArrayList<String>();
 

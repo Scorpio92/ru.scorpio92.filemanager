@@ -247,6 +247,12 @@ public class DialogPresenter {
             mainOperationsParams.setOperation(action);
             mainOperationsParams.setSourceFile(getVarStore().getCurrentDir().getPath());
             mainOperationsParams.setPaths(getVarStore().getCurrentDir().getSelectedObjectsPaths());
+            mainOperationsParams.setRunInThread(true);
+            if(action == MainOperationsConstants.FILE_OPERATION_COPY) {
+                mainOperationsParams.setAllowInselfCopy(SettingsUtils.getBooleanSettings(activityContext, Constants.GENERAL_SETTING_SELF_COPY_KEY));
+            } else {
+                mainOperationsParams.setAllowInselfCopy(false);
+            }
             mainOperationsParams.setMainOperationsTools(getVarStore().getMainOperationsTools());
             getVarStore().setMainOperationsInstance(new MainOperations(mainOperationsParams));
 

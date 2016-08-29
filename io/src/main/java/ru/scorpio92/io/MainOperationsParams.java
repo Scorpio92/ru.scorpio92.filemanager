@@ -12,7 +12,8 @@ public class MainOperationsParams {
     private String distFile;
     private String fileName;
     private ArrayList<String> paths;
-    private Boolean runInThread;
+    private boolean runInThread;
+    private boolean allowInselfCopy;
     private MainOperationsDialogParams mainOperationsDialogParams=null;
     private MainOperationsTools mainOperationsTools=null;
 
@@ -40,6 +41,10 @@ public class MainOperationsParams {
 
     public void setRunInThread(Boolean runInThread) {
         this.runInThread=runInThread;
+    }
+
+    public void setAllowInselfCopy(boolean allowInselfCopy) {
+        this.allowInselfCopy = allowInselfCopy;
     }
 
     public void setMainOperationsDialogParams(MainOperationsDialogParams mainOperationsDialogParams) {
@@ -84,4 +89,10 @@ public class MainOperationsParams {
     public MainOperationsTools getMainOperationsTools() {
         return mainOperationsTools;
     }
+
+    public boolean isAllowInselfCopy() {
+        return allowInselfCopy;
+    }
+
+
 }
