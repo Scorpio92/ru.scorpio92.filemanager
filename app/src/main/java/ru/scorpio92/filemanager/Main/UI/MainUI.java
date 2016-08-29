@@ -1215,6 +1215,9 @@ public class MainUI extends Activity implements Callback {
                                         tmp += getVarStore().getMainOperationsTools().getObjectSize(path, true);
                                     }
                                 }
+                                for(String path:getVarStore().getCurrentDir().getSelectedObjectsPaths()) {
+                                    Log.w("fdsfsdf", path);
+                                }
                                 final long final_size=tmp;
                                 MainUI.this.runOnUiThread(new Runnable() {
                                     @Override

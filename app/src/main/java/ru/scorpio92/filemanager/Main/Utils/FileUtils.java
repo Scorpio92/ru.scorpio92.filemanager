@@ -146,12 +146,14 @@ public class FileUtils {
         return objs;
     }
 
-    //получение списка файлов по номерам массива
-    public static ArrayList<String> getFilesListUsingIndexMassive(ArrayList<Integer> idx_massive, ArrayList<Object> objects, Boolean getSubObjects) {
+    //получение списка файлов по номерам массива (без вложенных объектов)
+    //передаем методам копирования и т.д. список самих объектов, полный список со всей структурой вложенности получаем уже в них самих
+    //переносим данный функционал в Dir
+    /*public static ArrayList<String> getFilesListUsingIndexMassive(ArrayList<Integer> idx_massive, ArrayList<Object> objects) {
         ArrayList<String> result = new ArrayList<String>();
         try {
             for (int i = 0; i < idx_massive.size(); i++) {
-                String path = getMainOperationsTools().getRightPath(objects.get(idx_massive.get(i)).path); //если объект - симлинк - скопируется тот объект на который он ссылается
+                /*String path = getMainOperationsTools().getRightPath(objects.get(idx_massive.get(i)).path); //если объект - симлинк - скопируется тот объект на который он ссылается
 
                 //если нужно получить все объекты (включая поддиректории)
                 if (getSubObjects) {
@@ -167,12 +169,13 @@ public class FileUtils {
                 } else { //если нужно получить объекты только текущей директории (первый уровень вложенности)
                     result.add(path);
                 }
+                result.add(getMainOperationsTools().getRightPath(objects.get(idx_massive.get(i)).path));
             }
         } catch (Exception e) {
             Log.e("getFListUsingIdxMassive", null, e);
         }
         return result;
-    }
+    }*/
 
     private static String getDirObjectsCommand(String path, String grepString, boolean forOneObject) {
         String command = null;

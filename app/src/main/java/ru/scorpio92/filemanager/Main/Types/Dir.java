@@ -234,4 +234,16 @@ public class Dir {
             Log.e("returnObjectsFromBuffer", null, e);
         }
     }
+
+    public ArrayList<String> getSelectedObjectsPaths() {
+        ArrayList<String> list = new ArrayList<String>();
+        try {
+            for (int i:selectedObjects) {
+                list.add(objects.get(i).path);
+            }
+        } catch (Exception e) {
+            Log.e("getSelectedObjectsPaths", null, e);
+        }
+        return list;
+    }
 }

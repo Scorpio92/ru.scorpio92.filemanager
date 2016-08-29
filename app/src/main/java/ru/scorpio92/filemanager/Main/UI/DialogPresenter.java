@@ -180,12 +180,7 @@ public class DialogPresenter {
                                 MainOperationsParams mainOperationsParams = new MainOperationsParams();
                                 mainOperationsParams.setOperation(MainOperationsConstants.FILE_OPERATION_DELETE);
                                 mainOperationsParams.setRunInThread(true);
-                                mainOperationsParams.setPaths(FileUtils.getFilesListUsingIndexMassive(
-                                                getVarStore().getCurrentDir().getSelectedObjects(),
-                                                getVarStore().getCurrentDir().getObjects(),
-                                                true
-                                        )
-                                );
+                                mainOperationsParams.setPaths(getVarStore().getCurrentDir().getSelectedObjectsPaths());
                                 mainOperationsParams.setMainOperationsTools(getVarStore().getMainOperationsTools());
 
                                 LinearLayout pview = getHorizontalPBView();
@@ -251,12 +246,7 @@ public class DialogPresenter {
             MainOperationsParams mainOperationsParams = new MainOperationsParams();
             mainOperationsParams.setOperation(action);
             mainOperationsParams.setSourceFile(getVarStore().getCurrentDir().getPath());
-            mainOperationsParams.setPaths(FileUtils.getFilesListUsingIndexMassive(
-                            getVarStore().getCurrentDir().getSelectedObjects(),
-                            getVarStore().getCurrentDir().getObjects(),
-                            true
-                    )
-            );
+            mainOperationsParams.setPaths(getVarStore().getCurrentDir().getSelectedObjectsPaths());
             mainOperationsParams.setMainOperationsTools(getVarStore().getMainOperationsTools());
             getVarStore().setMainOperationsInstance(new MainOperations(mainOperationsParams));
 
@@ -641,7 +631,7 @@ public class DialogPresenter {
 
                             ZipParams zipParams = new ZipParams(
                                     ZipConstants.OPERATION_ZIP,
-                                    FileUtils.getFilesListUsingIndexMassive(getVarStore().getCurrentDir().getSelectedObjects(), getVarStore().getCurrentDir().getObjects(), false),
+                                    getVarStore().getCurrentDir().getSelectedObjectsPaths(),
                                     Constants.ARCHIVE_DIR_PACKED + "/" + archiveName
                             );
                             zipParams.setCompressLevel(compLevelVal);
