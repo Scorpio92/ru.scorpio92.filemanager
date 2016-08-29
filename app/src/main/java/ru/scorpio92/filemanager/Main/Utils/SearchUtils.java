@@ -13,7 +13,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 
-import ru.scorpio92.filemanager.Main.Types.*;
 import ru.scorpio92.filemanager.Main.Types.Object;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Main.Variables.VarStore;
@@ -48,7 +47,7 @@ public class SearchUtils {
                 public void run() {
                     getVarStore().setSearchResults(new ArrayList<Object>());
                     try {
-                        ArrayList<String> tmp = getVarStore().getMainOperationsTools().getAllFiles(path);
+                        ArrayList<String> tmp = getVarStore().getMainOperationsTools().getAllObjectsInFolder(path);
 
                         if (tmp == null) {
                             dialog.dismiss();
