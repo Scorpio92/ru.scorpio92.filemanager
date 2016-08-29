@@ -545,7 +545,7 @@ public class MainOperationsTools {
     }
 
     //получаем список всех подобъектов данной директории (включая саму директорию)
-    public ArrayList<String> getAllFiles(String dirPath) {
+    public ArrayList<String> getAllObjectsInFolder(String dirPath) {
         ArrayList<String> resultList = new ArrayList<String>();
         try {
             String command = GET_ALL_SUBDIR_OBJECTS
@@ -557,8 +557,25 @@ public class MainOperationsTools {
                 resultList.addAll(runProcessFromSU(command, true));
             }
         } catch (Exception e) {
-            Log.e("getAllFiles", null, e);
+            Log.e("getAllObjectsInFolder", null, e);
         }
         return resultList;
+    }
+
+    //получение полного списка объектов(включая подобъекты) по списку средствами java.io
+    public ArrayList<String> getAllObjectsFromList(ArrayList<String> list) {
+        ArrayList<String> objects = new ArrayList<String>();
+        try {
+            for(String obj:list) {
+                if(new File(obj).isDirectory()) {
+                    objects.addAll(getAllObjectsInFolder(obj));
+                } else {
+                    objects.add(obj);
+                }
+            }
+        } catch (Exception e) {
+            Log.w("getAllObjectsFromList", null, e);
+        }
+        return objects;
     }
 }

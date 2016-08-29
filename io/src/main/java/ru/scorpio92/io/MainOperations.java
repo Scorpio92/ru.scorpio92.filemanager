@@ -72,25 +72,29 @@ public class MainOperations {
 
     //выбор и запуск нужной операции
     private void startOperation() {
+        ArrayList<String> pathList= mainOperationsTools.getAllObjectsFromList(mainOperationsParams.getPaths());
         switch (mainOperationsParams.getOperation()) {
             case MainOperationsConstants.FILE_OPERATION_RENAME:
                 showProgressDialog();
                 rename(mainOperationsParams.getSourceFile(), mainOperationsParams.getFileName());
                 break;
             case MainOperationsConstants.FILE_OPERATION_DELETE:
-                maxProgress = mainOperationsParams.getPaths().size();
+                //maxProgress = mainOperationsParams.getPaths().size();
+                maxProgress =pathList.size();
                 showProgressDialog();
-                delete(mainOperationsParams.getPaths());
+                delete(pathList);
                 break;
             case MainOperationsConstants.FILE_OPERATION_COPY:
-                maxProgress = mainOperationsParams.getPaths().size();
+                //maxProgress = mainOperationsParams.getPaths().size();
+                maxProgress =pathList.size();
                 showProgressDialog();
-                copy_move(mainOperationsParams.getPaths(), mainOperationsParams.getDistFile(), MainOperationsConstants.FILE_OPERATION_COPY);
+                copy_move(pathList, mainOperationsParams.getDistFile(), MainOperationsConstants.FILE_OPERATION_COPY);
                 break;
             case MainOperationsConstants.FILE_OPERATION_MOVE:
-                maxProgress = mainOperationsParams.getPaths().size() * 2; //т.к. сначала копируем, а потом удаляем родительские объекты
+                //maxProgress = mainOperationsParams.getPaths().size() * 2; //т.к. сначала копируем, а потом удаляем родительские объекты
+                maxProgress =pathList.size() * 2;
                 showProgressDialog();
-                copy_move(mainOperationsParams.getPaths(), mainOperationsParams.getDistFile(), MainOperationsConstants.FILE_OPERATION_MOVE);
+                copy_move(pathList, mainOperationsParams.getDistFile(), MainOperationsConstants.FILE_OPERATION_MOVE);
                 break;
             /*case MainOperationsConstants.FILE_OPERATION_SEARCH:
                 showProgressDialog();
