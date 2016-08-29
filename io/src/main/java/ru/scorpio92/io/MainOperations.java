@@ -376,7 +376,7 @@ public class MainOperations {
         try {
             //вычисляем размер копируемых объектов и сравниваем его с оствшимся местом в distPath
             long totalSize=0;
-            long freeSpase=0;
+            long freeSpace =0;
 
             for(String path:paths) {
                 if(new File(path).isFile()) {
@@ -388,10 +388,10 @@ public class MainOperations {
 
             Log.w("totalSize", Long.toString(totalSize));
 
-            freeSpase = mainOperationsTools.getFreeSpaceOnMountPoint(distPath);
-            Log.w("totalSize", Long.toString(freeSpase));
+            freeSpace = mainOperationsTools.getFreeSpaceOnMountPoint(distPath);
+            Log.w("totalSize", Long.toString(freeSpace));
 
-            if(totalSize>=freeSpase) {
+            if(totalSize>= freeSpace) {
                 status = MainOperationsConstants.NO_SPACE_IN_TARGET;
                 return;
             }

@@ -26,8 +26,6 @@ public class FileUtils {
 
     private static final String SAVE_TEXT_FILE = "BB=BUSYBOX_FOR_REPLACE; $BB echo -e \"TEXT_FOR_REPLACE\" > \"PATH_FOR_REPLACE\"; $BB cat \"PATH_FOR_REPLACE\"";
 
-    private static final String GET_ALL_SUBDIR_OBJECTS = "BB=BUSYBOX_FOR_REPLACE; $BB find \"PATH_FOR_REPLACE\"";
-
     private static final String GET_ALL_OBJECTS_COUNT_IN_CURR_DIR = "BB=BUSYBOX_FOR_REPLACE; $BB find \"PATH_FOR_REPLACE\" -mindepth 1 -maxdepth 1 | $BB wc -l";
 
     private static final String GET_DIRS_COUNT_IN_CURR_DIR = "BB=BUSYBOX_FOR_REPLACE; $BB find \"PATH_FOR_REPLACE\" -mindepth 1 -maxdepth 1 -type d | $BB wc -l";
@@ -76,15 +74,15 @@ public class FileUtils {
             long startTime = System.nanoTime();
             if(forOneObject) {
                 if (new File(path).getParentFile().listFiles() != null) {
-                    rawList = getDirObjectsRawInfo(path, grepString, false, true);
+                    rawList = getDirObjectsRawInfo(path, grepString, true);
                 } else {
-                    rawList = getPrivateDirObjectsRawInfo(path, grepString, false, true);
+                    rawList = getPrivateDirObjectsRawInfo(path, grepString, true);
                 }
             } else {
                 if (new File(path).listFiles() != null) { //если прав хватает получаем список из под обычного пользователя
-                    rawList = getDirObjectsRawInfo(path, grepString, false, false);
+                    rawList = getDirObjectsRawInfo(path, grepString, false);
                 } else {
-                    rawList = getPrivateDirObjectsRawInfo(path, grepString, false, false);
+                    rawList = getPrivateDirObjectsRawInfo(path, grepString, false);
                 }
             }
 
@@ -161,7 +159,7 @@ public class FileUtils {
                     //если объект директория - получаем все ее подобъекты
                     if (fileType.equals(Constants.OBJECT_TYPE_DIR)) {
                         //добавляем все подобъекты данной директории и саму директорию
-                        result.addAll(getAllFiles(path));
+                        result.addAll(getVarStore().getMainOperationsTools().getAllFiles(path));
 
                     } else { //если файл - просто добавляем
                         result.add(path);
@@ -176,40 +174,29 @@ public class FileUtils {
         return result;
     }
 
-    private static String getDirObjectsCommand(String path, String grepString, boolean getAll, boolean forOneObject) {
+    private static String getDirObjectsCommand(String path, String grepString, boolean forOneObject) {
         String command = null;
         try {
-            if (getAll) {
+            if(forOneObject) {
+                command = GET_OBJECT_RAW_INFO
+                        .replace("PATH_FOR_REPLACE", path);
+            } else {
+                if (SettingsUtils.getBooleanSettings(VarStore.getAppContext(), Constants.VIEW_SHOW_HIDDEN_KEY)) {
+                    command = GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN;
+                } else {
+                    command = GET_ALL_DIR_OBJECTS_AND_TYPES;
+                }
                 if (path.equals("/")) {
-                    command = GET_ALL_SUBDIR_OBJECTS
+                    command = command
                             .replace("PATH_FOR_REPLACE", "");
                 } else {
-                    command = GET_ALL_SUBDIR_OBJECTS
+                    command = command
                             .replace("PATH_FOR_REPLACE", path);
                 }
-            } else {
-                //путь
-                if(forOneObject) {
-                    command = GET_OBJECT_RAW_INFO
-                            .replace("PATH_FOR_REPLACE", path);
-                } else {
-                    if (SettingsUtils.getBooleanSettings(VarStore.getAppContext(), Constants.VIEW_SHOW_HIDDEN_KEY)) {
-                        command = GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN;
-                    } else {
-                        command = GET_ALL_DIR_OBJECTS_AND_TYPES;
-                    }
-                    if (path.equals("/")) {
-                        command = command
-                                .replace("PATH_FOR_REPLACE", "");
-                    } else {
-                        command = command
-                                .replace("PATH_FOR_REPLACE", path);
-                    }
-                }
-
-                //сортировка и т.д.
-                command = command.replace("GREP_STRING_FOR_REPLACE", grepString);
             }
+
+            //сортировка и т.д.
+            command = command.replace("GREP_STRING_FOR_REPLACE", grepString);
 
         } catch (Exception e) {
             Log.e("getDirObjectsCommand", null, e);
@@ -219,9 +206,9 @@ public class FileUtils {
     }
 
     //получаем список файлов и директорий
-    public static ArrayList<String> getDirObjectsRawInfo(String path, String grepString, boolean getAll, boolean forOneObject) {
+    public static ArrayList<String> getDirObjectsRawInfo(String path, String grepString, boolean forOneObject) {
         try {
-            return getMainOperationsTools().runProcess(new String[]{Constants.SH_PATH, "-c", getDirObjectsCommand(path, grepString, getAll, forOneObject)});
+            return getMainOperationsTools().runProcess(new String[]{Constants.SH_PATH, "-c", getDirObjectsCommand(path, grepString, forOneObject)});
 
         } catch (Exception e) {
             Log.e("getObjsNamesFromCurDir", null, e);
@@ -230,31 +217,13 @@ public class FileUtils {
     }
 
     //получаем список файлов и директорий из приватных каталогов (например /data)
-    public static ArrayList<String> getPrivateDirObjectsRawInfo(String path, String grepString, boolean getAll, boolean forOneObject) {
+    public static ArrayList<String> getPrivateDirObjectsRawInfo(String path, String grepString, boolean forOneObject) {
         try {
-            return getMainOperationsTools().runProcessFromSU(getDirObjectsCommand(path, grepString, getAll, forOneObject), true);
+            return getMainOperationsTools().runProcessFromSU(getDirObjectsCommand(path, grepString, forOneObject), true);
         } catch (Exception e) {
             Log.e("getObjsNamesFromCurtDir", null, e);
         }
         return new ArrayList<String>();
-    }
-
-    //все подобъекты данной директории и саму директорию
-    public static ArrayList<String> getAllFiles(String dirPath) {
-        ArrayList<String> resultList = new ArrayList<String>();
-        try {
-            String command = GET_ALL_SUBDIR_OBJECTS
-                    .replace("PATH_FOR_REPLACE", dirPath);
-
-            if (new File(dirPath).listFiles() != null) {//если хватает прав
-                resultList.addAll(getMainOperationsTools().runProcess(new String[]{Constants.SH_PATH, "-c", command}));
-            } else {
-                resultList.addAll(getMainOperationsTools().runProcessFromSU(command, true));
-            }
-        } catch (Exception e) {
-            Log.e("getAllFiles", null, e);
-        }
-        return resultList;
     }
 
 

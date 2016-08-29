@@ -48,7 +48,7 @@ public class SearchUtils {
                 public void run() {
                     getVarStore().setSearchResults(new ArrayList<Object>());
                     try {
-                        ArrayList<String> tmp = FileUtils.getAllFiles(path);
+                        ArrayList<String> tmp = getVarStore().getMainOperationsTools().getAllFiles(path);
 
                         if (tmp == null) {
                             dialog.dismiss();

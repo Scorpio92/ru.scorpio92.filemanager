@@ -41,6 +41,7 @@ public class MainOperationsTools {
     private  final String REMOUNT_RW_COMMAND = SYSTEM_MOUNT_BIN_PATH + " -o remount,rw \"PATH_FOR_REPLACE\"";
     private  final String REMOUNT_RO_COMMAND = SYSTEM_MOUNT_BIN_PATH + " -o remount,ro \"PATH_FOR_REPLACE\"";
     private  final String CHECK_ROOT = "BB=BUSYBOX_FOR_REPLACE; $BB ls /data";
+    private  final String GET_ALL_SUBDIR_OBJECTS = "BB=BUSYBOX_FOR_REPLACE; $BB find \"PATH_FOR_REPLACE\"";
 
     //операция перемонтирования, к этим константам разрешаем доступ извне
     public static final int REMOUNT_RW = 0;
@@ -541,5 +542,23 @@ public class MainOperationsTools {
             }
         }
         return 0;
+    }
+
+    //получаем список всех подобъектов данной директории (включая саму директорию)
+    public ArrayList<String> getAllFiles(String dirPath) {
+        ArrayList<String> resultList = new ArrayList<String>();
+        try {
+            String command = GET_ALL_SUBDIR_OBJECTS
+                    .replace("PATH_FOR_REPLACE", dirPath);
+
+            if (new File(dirPath).listFiles() != null) {//если хватает прав
+                resultList.addAll(runProcess(new String[]{SH_PATH, "-c", command}));
+            } else {
+                resultList.addAll(runProcessFromSU(command, true));
+            }
+        } catch (Exception e) {
+            Log.e("getAllFiles", null, e);
+        }
+        return resultList;
     }
 }
