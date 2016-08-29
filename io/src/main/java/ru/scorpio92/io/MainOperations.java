@@ -375,7 +375,7 @@ public class MainOperations {
 
         try {
             //вычисляем размер копируемых объектов и сравниваем его с оствшимся местом в distPath
-            long totalSize=0;
+            /*long totalSize=0;
             long freeSpace =0;
 
             for(String path:paths) {
@@ -394,7 +394,7 @@ public class MainOperations {
             if(totalSize>= freeSpace) {
                 status = MainOperationsConstants.NO_SPACE_IN_TARGET;
                 return;
-            }
+            }*/
 
 
             //forRename = new ArrayList<String>();
