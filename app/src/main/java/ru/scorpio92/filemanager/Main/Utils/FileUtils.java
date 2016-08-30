@@ -32,9 +32,9 @@ public class FileUtils {
 
     private static final String GET_SPACE_USAGE_STAT = "BB=BUSYBOX_FOR_REPLACE; $BB df -Ph PATH_FOR_REPLACE | $BB sed 1d | $BB tr -s ' ' | $BB cut -d ' ' -f6,2,3,4"; //в названии точек монтирования пробелов нет, поэтом путь в кавычки не берем иначае не получим инфо по всем разделам
 
-    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES = "BB=BUSYBOX_FOR_REPLACE; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB printf '%s\\n' \"PATH_FOR_REPLACE\"/* | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
+    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls \"/$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
 
-    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls -A \"$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\" )); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
+    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls -A \"/$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\" )); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
 
     private static final String GET_OBJECT_RAW_INFO = "BB=BUSYBOX_FOR_REPLACE; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB printf '%s\\n' \"PATH_FOR_REPLACE\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
 
@@ -105,7 +105,11 @@ public class FileUtils {
                         }
                     }
                 } else {
-                    size = f.length();
+                    if(f.canRead()) {
+                        size = f.length();
+                    } else {
+                        size = getMainOperationsTools().getObjectSize(o, true);
+                    }
                 }
 
                 Object object = new Object(o, type, new Date(f.lastModified()).toString(), size, full_date_format);
