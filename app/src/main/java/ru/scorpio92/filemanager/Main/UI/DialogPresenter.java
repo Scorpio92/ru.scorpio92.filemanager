@@ -167,8 +167,8 @@ public class DialogPresenter {
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             try {
-                                if (getVarStore().getCurrentDir().getSelectedObjects().isEmpty()) { //если не были выбраны файлы, удаляется тот файл/директория на котором было вызвано контесктное меню
-                                    getVarStore().getCurrentDir().getSelectedObjects().add(positionLongPressedFile);
+                                if (getVarStore().getCurrentDir().getSelectedObjectsIDs().isEmpty()) { //если не были выбраны файлы, удаляется тот файл/директория на котором было вызвано контесктное меню
+                                    getVarStore().getCurrentDir().getSelectedObjectsIDs().add(positionLongPressedFile);
                                 }
                                 //записываем в буфер список текущих объектов для дальнейших операций с ними
                                 //getVarStore().getBuffer().setTypesArray(getVarStore().getCurrentDirectory().getTypesArray());
@@ -180,7 +180,7 @@ public class DialogPresenter {
                                 MainOperationsParams mainOperationsParams = new MainOperationsParams();
                                 mainOperationsParams.setOperation(MainOperationsConstants.FILE_OPERATION_DELETE);
                                 mainOperationsParams.setRunInThread(true);
-                                mainOperationsParams.setPaths(getVarStore().getCurrentDir().getSelectedObjectsPaths());
+                                mainOperationsParams.setObjects(getVarStore().getCurrentDir().getSelectedObjects());
                                 mainOperationsParams.setMainOperationsTools(getVarStore().getMainOperationsTools());
 
                                 LinearLayout pview = getHorizontalPBView();
@@ -237,8 +237,8 @@ public class DialogPresenter {
     //диалог для копирования и перемещения
     public void showCopyMoveDialog(final int positionLongPressedFile, int action) {
         try {
-            if (getVarStore().getCurrentDir().getSelectedObjects().isEmpty()) { //если не были выбраны файлы, удаляется тот файл/директория на котором было вызвано контесктное меню
-                getVarStore().getCurrentDir().getSelectedObjects().add(positionLongPressedFile);
+            if (getVarStore().getCurrentDir().getSelectedObjectsIDs().isEmpty()) { //если не были выбраны файлы, удаляется тот файл/директория на котором было вызвано контесктное меню
+                getVarStore().getCurrentDir().getSelectedObjectsIDs().add(positionLongPressedFile);
             }
 
             Log.w("showCopyMoveDialog", Integer.toString(action));
@@ -246,7 +246,7 @@ public class DialogPresenter {
             MainOperationsParams mainOperationsParams = new MainOperationsParams();
             mainOperationsParams.setOperation(action);
             mainOperationsParams.setSourceFile(getVarStore().getCurrentDir().getPath());
-            mainOperationsParams.setPaths(getVarStore().getCurrentDir().getSelectedObjectsPaths());
+            mainOperationsParams.setObjects(getVarStore().getCurrentDir().getSelectedObjects());
             mainOperationsParams.setRunInThread(true);
             if(action == MainOperationsConstants.FILE_OPERATION_COPY) {
                 mainOperationsParams.setAllowInselfCopy(SettingsUtils.getBooleanSettings(activityContext, Constants.GENERAL_SETTING_SELF_COPY_KEY));
@@ -611,8 +611,8 @@ public class DialogPresenter {
                             Toast.makeText(activityContext, activityContext.getString(R.string.zip_dialog_file_exists), Toast.LENGTH_SHORT).show();
                         } else {
 
-                            if (getVarStore().getCurrentDir().getSelectedObjects().isEmpty()) { //если не были выбраны файлы, удаляется тот файл/директория на котором было вызвано контесктное меню
-                                getVarStore().getCurrentDir().getSelectedObjects().add(positionLongPressedFile);
+                            if (getVarStore().getCurrentDir().getSelectedObjectsIDs().isEmpty()) { //если не были выбраны файлы, удаляется тот файл/директория на котором было вызвано контесктное меню
+                                getVarStore().getCurrentDir().getSelectedObjectsIDs().add(positionLongPressedFile);
                             }
 
                             int spinner_pos;

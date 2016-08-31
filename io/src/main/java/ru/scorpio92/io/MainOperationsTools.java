@@ -15,6 +15,9 @@ import java.io.OutputStream;
 import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 
+import ru.scorpio92.io.Types.*;
+import ru.scorpio92.io.Types.Object;
+
 /**
  * Created by scorpio92 on 18.07.16.
  */
@@ -571,6 +574,22 @@ public class MainOperationsTools {
                     objects.addAll(getAllObjectsInFolder(obj));
                 } else {
                     objects.add(obj);
+                }
+            }
+        } catch (Exception e) {
+            Log.w("getAllObjectsFromList", null, e);
+        }
+        return objects;
+    }
+
+    public ArrayList<String> getAllObjectsFromListObjects(ArrayList<Object> list) {
+        ArrayList<String> objects = new ArrayList<String>();
+        try {
+            for(Object obj:list) {
+                if(new File(obj.path).isDirectory()) {
+                    objects.addAll(getAllObjectsInFolder(obj.path));
+                } else {
+                    objects.add(obj.path);
                 }
             }
         } catch (Exception e) {

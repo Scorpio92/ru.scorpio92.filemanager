@@ -95,7 +95,7 @@ public class ArchPacked extends Fragment {
             popupMenu.inflate(R.menu.work_files_arch_packed_operations);
             //Menu menu = popupMenu.getMenu();
 
-            /*if (getVarStore().getCurrentDir().getSelectedObjects().size() > 1) {
+            /*if (getVarStore().getCurrentDir().getSelectedObjectsIDs().size() > 1) {
                 menu.findItem(R.id.file_operations_unzip).setVisible(false);
             }*/
 
@@ -104,11 +104,11 @@ public class ArchPacked extends Fragment {
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.file_operations_selector:
-                            getVarStore().getCurrentDir().getSelectedObjects().clear();
+                            getVarStore().getCurrentDir().getSelectedObjectsIDs().clear();
                             if (!getVarStore().getCurrentDir().isSelectAll()) {
                                 //добавляем всех файлы списка в массив
                                 for (int i = 0; i < getVarStore().getCurrentDir().getObjects().size(); i++) {
-                                    getVarStore().getCurrentDir().getSelectedObjects().add(i);
+                                    getVarStore().getCurrentDir().getSelectedObjectsIDs().add(i);
                                 }
                                 getVarStore().getCurrentDir().setSelectAll(true);
                             } else {

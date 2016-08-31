@@ -207,7 +207,7 @@ public class Dir {
         this.selectedObjects = selectedObjects;
     }
 
-    public ArrayList<Integer> getSelectedObjects() {
+    public ArrayList<Integer> getSelectedObjectsIDs() {
         return selectedObjects;
     }
 
@@ -242,6 +242,18 @@ public class Dir {
         try {
             for (int i:selectedObjects) {
                 list.add(objects.get(i).path);
+            }
+        } catch (Exception e) {
+            Log.e("getSelectedObjectsPaths", null, e);
+        }
+        return list;
+    }
+
+    public ArrayList<Object> getSelectedObjects() {
+        ArrayList<Object> list = new ArrayList<Object>();
+        try {
+            for (int i:selectedObjects) {
+                list.add(objects.get(i));
             }
         } catch (Exception e) {
             Log.e("getSelectedObjectsPaths", null, e);

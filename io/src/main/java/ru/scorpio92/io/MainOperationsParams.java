@@ -1,6 +1,7 @@
 package ru.scorpio92.io;
 
 import java.util.ArrayList;
+import ru.scorpio92.io.Types.Object;
 
 /**
  * Created by scorpio92 on 15.06.16.
@@ -11,7 +12,8 @@ public class MainOperationsParams {
     private String sourceFile;
     private String distFile;
     private String fileName;
-    private ArrayList<String> paths;
+    private ArrayList<String> paths = null;
+    private ArrayList<Object> objects = null;
     private boolean runInThread;
     private boolean allowInselfCopy;
     private MainOperationsDialogParams mainOperationsDialogParams=null;
@@ -37,6 +39,10 @@ public class MainOperationsParams {
 
     public void setPaths(ArrayList<String> paths) {
         this.paths=paths;
+    }
+
+    public void setObjects(ArrayList<Object> objects) {
+        this.objects = objects;
     }
 
     public void setRunInThread(Boolean runInThread) {
@@ -77,6 +83,10 @@ public class MainOperationsParams {
         return paths;
     }
 
+    public ArrayList<Object> getObjects() {
+        return objects;
+    }
+
     public Boolean getRunInThread() {
         return runInThread;
     }
@@ -93,6 +103,4 @@ public class MainOperationsParams {
     public boolean isAllowInselfCopy() {
         return allowInselfCopy;
     }
-
-
 }

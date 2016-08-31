@@ -176,7 +176,7 @@ public class WorkFiles extends FragmentActivity {
                     //updateFileList(Constants.ROOT_PATH);
                     finish = true;
                     getVarStore().getCurrentDir().setSelectAll(false);
-                    getVarStore().getCurrentDir().getSelectedObjects().clear();
+                    getVarStore().getCurrentDir().getSelectedObjectsIDs().clear();
                     finish();
                 } else {
                     if(!finish) {

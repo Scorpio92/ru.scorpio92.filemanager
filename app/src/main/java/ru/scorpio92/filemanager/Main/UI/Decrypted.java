@@ -107,11 +107,11 @@ public class Decrypted extends Fragment {
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
                         case R.id.file_operations_selector:
-                            getVarStore().getCurrentDir().getSelectedObjects().clear();
+                            getVarStore().getCurrentDir().getSelectedObjectsIDs().clear();
                             if (!getVarStore().getCurrentDir().isSelectAll()) {
                                 //добавляем всех файлы списка в массив
                                 for (int i = 0; i < getVarStore().getCurrentDir().getObjects().size(); i++) {
-                                    getVarStore().getCurrentDir().getSelectedObjects().add(i);
+                                    getVarStore().getCurrentDir().getSelectedObjectsIDs().add(i);
                                 }
                                 getVarStore().getCurrentDir().setSelectAll(true);
                             } else {

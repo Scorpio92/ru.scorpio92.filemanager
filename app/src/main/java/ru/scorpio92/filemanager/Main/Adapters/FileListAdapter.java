@@ -96,7 +96,7 @@ public class FileListAdapter extends BaseAdapter {
                 cb.setChecked(true);
 
             } else { //если не нужно выбирать все, проверяем вхождение текущей позиуии в массив
-                if(!varStore.getCurrentDir().getSelectedObjects().contains(position)) {
+                if(!varStore.getCurrentDir().getSelectedObjectsIDs().contains(position)) {
                     cb.setChecked(false); //снимаем флажок
                 } else {
                     cb.setChecked(true);
@@ -110,13 +110,13 @@ public class FileListAdapter extends BaseAdapter {
                     varStore.getCurrentDir().setSelectAll(false); //если нажали на какой то чекбокс
 
                     if (cb.isChecked()) { //выделям
-                        if (!varStore.getCurrentDir().getSelectedObjects().contains(position)) {
-                            varStore.getCurrentDir().getSelectedObjects().add(position); //добавляем в список выбранных файлов
+                        if (!varStore.getCurrentDir().getSelectedObjectsIDs().contains(position)) {
+                            varStore.getCurrentDir().getSelectedObjectsIDs().add(position); //добавляем в список выбранных файлов
                             showSelectedInfo();
                         }
                     } else { //снимаем выделение
-                        if (varStore.getCurrentDir().getSelectedObjects().contains(position)) {
-                            varStore.getCurrentDir().getSelectedObjects().remove((Object) position); //удаляем из списка выбранных файлов
+                        if (varStore.getCurrentDir().getSelectedObjectsIDs().contains(position)) {
+                            varStore.getCurrentDir().getSelectedObjectsIDs().remove((Object) position); //удаляем из списка выбранных файлов
                             showSelectedInfo();
                         }
                     }

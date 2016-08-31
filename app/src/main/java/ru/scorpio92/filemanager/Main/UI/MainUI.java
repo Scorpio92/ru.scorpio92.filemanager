@@ -370,11 +370,11 @@ public class MainUI extends Activity implements Callback {
             @Override
             public void onClick(View view) {
                 //Log.w("selector.setOnClickListener", "!!!");
-                getVarStore().getCurrentDir().getSelectedObjects().clear();
+                getVarStore().getCurrentDir().getSelectedObjectsIDs().clear();
                 if (selector.isChecked()) {
                     //добавляем всех файлы списка в массив
                     for (int i = 0; i < getVarStore().getCurrentDir().getObjects().size(); i++) {
-                        getVarStore().getCurrentDir().getSelectedObjects().add(i);
+                        getVarStore().getCurrentDir().getSelectedObjectsIDs().add(i);
                     }
                 }
                 getVarStore().getCurrentDir().setSelectAll(selector.isChecked());
@@ -692,7 +692,7 @@ public class MainUI extends Activity implements Callback {
                         public void onClick(DialogInterface dialog, int which) {
                             //очищаем массив выделенных файлов
                             //getVarStore().getBuffer().clear();
-                            getVarStore().getCurrentDir().getSelectedObjects().clear();
+                            getVarStore().getCurrentDir().getSelectedObjectsIDs().clear();
                             dialog.cancel();
                         }
                     });
@@ -895,7 +895,7 @@ public class MainUI extends Activity implements Callback {
             }
 
             //если были выбраны файлы (>1), то блокируем пункт переименовать, свойства, копировать имя, копировать путь, распаковать, разрешения, TextViewer, TextEditor
-            if (getVarStore().getCurrentDir().getSelectedObjects().size() > 1) {
+            if (getVarStore().getCurrentDir().getSelectedObjectsIDs().size() > 1) {
                 menu.findItem(R.id.file_operations_rename).setVisible(false);
                 menu.findItem(R.id.file_operations_properties).setVisible(false);
                 //menu.findItem(R.id.file_operations_copy_name_to_buffer).setVisible(false);
@@ -1021,7 +1021,7 @@ public class MainUI extends Activity implements Callback {
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             //refreshCurrentDir();
-                            getVarStore().getCurrentDir().getSelectedObjects().clear();
+                            getVarStore().getCurrentDir().getSelectedObjectsIDs().clear();
                             dialog.dismiss();
                         }
                     });
@@ -1197,16 +1197,16 @@ public class MainUI extends Activity implements Callback {
     public void showSelectedInfo() {
         try {
             final TextView mTextView = (TextView) this.findViewById(R.id.selected_info);
-            if(getVarStore().getCurrentDir().getSelectedObjects().size() >0) {
+            if(getVarStore().getCurrentDir().getSelectedObjectsIDs().size() >0) {
                 if(SettingsUtils.getBooleanSettings(this, Constants.VIEW_SHOW_SELECTED_FILES_SIZE_KEY)) { //если нужно показывать размер выделенных файлов
-                    mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjects().size()) + ", " + getString(R.string.selected_full_size) + ": " +getString(R.string.selected_size_calculating));
+                    mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjectsIDs().size()) + ", " + getString(R.string.selected_full_size) + ": " +getString(R.string.selected_size_calculating));
                     Thread thread = new Thread() {
                         @Override
                         public void run() {
                             try {
                                 long tmp=0;
-                                for(int i=0; i<getVarStore().getCurrentDir().getSelectedObjects().size();i++) {
-                                    Object o = getVarStore().getCurrentDir().getObjects().get(getVarStore().getCurrentDir().getSelectedObjects().get(i));
+                                for(int i=0; i<getVarStore().getCurrentDir().getSelectedObjectsIDs().size();i++) {
+                                    Object o = getVarStore().getCurrentDir().getObjects().get(getVarStore().getCurrentDir().getSelectedObjectsIDs().get(i));
                                     String path = o.path;
                                     String type = o.type;
                                     if(type.equals(Object.TYPE_DIR) || type.equals(Object.TYPE_SYMLINK_DIR)) {
@@ -1222,7 +1222,7 @@ public class MainUI extends Activity implements Callback {
                                 MainUI.this.runOnUiThread(new Runnable() {
                                     @Override
                                     public void run() {
-                                        mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjects().size()) +", " + getString(R.string.selected_full_size) + ": " + getVarStore().getMainOperationsTools().getRightSize(final_size));
+                                        mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjectsIDs().size()) +", " + getString(R.string.selected_full_size) + ": " + getVarStore().getMainOperationsTools().getRightSize(final_size));
                                     }
                                 });
                             } catch (Exception e) {
@@ -1233,7 +1233,7 @@ public class MainUI extends Activity implements Callback {
                     thread.start();
 
                 } else {
-                    mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjects().size()));
+                    mTextView.setText(getString(R.string.selected) + ": " + Integer.toString(getVarStore().getCurrentDir().getSelectedObjectsIDs().size()));
                 }
                 mTextView.setVisibility(View.VISIBLE);
             } else {

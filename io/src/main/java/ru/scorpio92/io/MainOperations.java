@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import ru.scorpio92.io.Types.*;
+import ru.scorpio92.io.Types.Object;
+
 
 /**
  * Created by scorpio92 on 01.03.16.
@@ -72,7 +75,8 @@ public class MainOperations {
 
     //выбор и запуск нужной операции
     private void startOperation() {
-        ArrayList<String> pathList= mainOperationsTools.getAllObjectsFromList(mainOperationsParams.getPaths());
+        //ArrayList<String> pathList= mainOperationsTools.getAllObjectsFromList(mainOperationsParams.getPaths());
+        ArrayList<String> pathList = getObjectsPaths();
         switch (mainOperationsParams.getOperation()) {
             case MainOperationsConstants.FILE_OPERATION_RENAME:
                 showProgressDialog();
@@ -80,21 +84,23 @@ public class MainOperations {
                 break;
             case MainOperationsConstants.FILE_OPERATION_DELETE:
                 //maxProgress = mainOperationsParams.getPaths().size();
-                maxProgress =pathList.size();
+                maxProgress = pathList.size();
                 showProgressDialog();
                 delete(pathList);
                 break;
             case MainOperationsConstants.FILE_OPERATION_COPY:
                 //maxProgress = mainOperationsParams.getPaths().size();
-                maxProgress =pathList.size();
+                maxProgress = pathList.size();
                 showProgressDialog();
-                copy_move(pathList, mainOperationsParams.getDistFile(), MainOperationsConstants.FILE_OPERATION_COPY);
+                if(runPreCopyMoveChecks())
+                    copy_move(pathList, mainOperationsParams.getDistFile(), MainOperationsConstants.FILE_OPERATION_COPY);
                 break;
             case MainOperationsConstants.FILE_OPERATION_MOVE:
                 //maxProgress = mainOperationsParams.getPaths().size() * 2; //т.к. сначала копируем, а потом удаляем родительские объекты
-                maxProgress =pathList.size() * 2;
+                maxProgress = pathList.size() * 2;
                 showProgressDialog();
-                copy_move(pathList, mainOperationsParams.getDistFile(), MainOperationsConstants.FILE_OPERATION_MOVE);
+                if(runPreCopyMoveChecks())
+                    copy_move(pathList, mainOperationsParams.getDistFile(), MainOperationsConstants.FILE_OPERATION_MOVE);
                 break;
             /*case MainOperationsConstants.FILE_OPERATION_SEARCH:
                 showProgressDialog();
@@ -311,12 +317,36 @@ public class MainOperations {
         return false;
     }
 
+    //получаем список всех объектов для удаления/копирования/перемещения из переданных объктов(приоритетнее) или из массива путей
+    private ArrayList<String> getObjectsPaths() {
+        ArrayList<String> pathList = new ArrayList<String>();
+        try {
+            if(mainOperationsParams.getObjects() != null) {
+                pathList= mainOperationsTools.getAllObjectsFromListObjects(mainOperationsParams.getObjects());
+            } else {
+                if(mainOperationsParams.getPaths() != null) {
+                    pathList= mainOperationsTools.getAllObjectsFromList(mainOperationsParams.getPaths());
+                }
+            }
+        } catch (Exception e) {
+            Log.e("getObjectsPaths", null, e);
+        }
+        return pathList;
+    }
+
     //удаление файлов. на вход подается массив путей. на выходе - int массив:
     //1 элемент - общее кол-во файлов, 2 элемент - кол-во успешно удаленный файлов
     private void delete(ArrayList<String> paths) {
         boolean wasRemount = false;
         String remountPath = null;
         try {
+
+            //если массив путей пустой - выходим с ошибкой
+            if(paths.isEmpty()) {
+                status = MainOperationsConstants.ERROR;
+                return;
+            }
+
             while (!paths.isEmpty()) {
                 if(stop) {
                     status = MainOperationsConstants.COMPLETE;
@@ -365,6 +395,92 @@ public class MainOperations {
         }
     }
 
+    //запуск проверок на наличие свободного места и копирование объектов в самих себя перед копированием/перемещением
+    private boolean runPreCopyMoveChecks() {
+        try {
+            //вычисляем размер копируемых объектов и сравниваем его с оствшимся местом в distPath
+            //работать корректно будет только для объктов доступных на чтение (системная папка может не определиться как папка и ее размер будет равен 0)
+            long totalSize=0;
+
+            if(mainOperationsParams.getObjects() != null) {
+                for(Object o:mainOperationsParams.getObjects()) { //берем именно не полный список объектов (paths), а mainOperationsParams.getPaths() - список выбранных объктов
+                    if(stop) {
+                        return false;
+                    }
+                    if(o.type.equals(Object.TYPE_FILE) || o.type.equals(Object.TYPE_SYMLINK_FILE)) {
+                        totalSize+=mainOperationsTools.getObjectSize(o.path, true);
+                    } else {
+                        totalSize+=mainOperationsTools.getObjectSize(o.path, false);
+                    }
+                }
+            } else {
+                if(mainOperationsParams.getPaths() != null) {
+                    for(String path:mainOperationsParams.getPaths()) { //берем именно не полный список объектов (paths), а mainOperationsParams.getPaths() - список выбранных объктов
+                        if(stop) {
+                            return false;
+                        }
+                        if(new File(path).isFile()) {
+                            totalSize+=mainOperationsTools.getObjectSize(path, true);
+                        } else {
+                            totalSize+=mainOperationsTools.getObjectSize(path, false);
+                        }
+                    }
+                } else {
+                    return false;
+                }
+            }
+
+            Log.w("totalSize", Long.toString(totalSize));
+
+            long freeSpace = mainOperationsTools.getFreeSpaceOnMountPoint(mainOperationsParams.getDistFile());
+            Log.w("totalSize", Long.toString(freeSpace));
+
+            if(totalSize > freeSpace) {
+                status = MainOperationsConstants.NO_SPACE_IN_TARGET;
+                return false;
+            }
+
+
+            //проверяем на копирование в себя
+            if(!mainOperationsParams.isAllowInselfCopy()) {
+                //если хотя бы один из копируемых объектов (mainOperationsParams.getPaths()) целиком содержит текущий путь - блокируем копирование
+                if(mainOperationsParams.getObjects() != null) {
+                    for(Object o:mainOperationsParams.getObjects()) { //берем именно не полный список объектов (paths), а mainOperationsParams.getPaths() - список выбранных объктов
+                        if(stop) {
+                            return false;
+                        }
+                        if (mainOperationsParams.getDistFile().equals(o.path)) {
+                            status = MainOperationsConstants.ERROR;
+                            return false;
+                        }
+                    }
+                } else {
+                    if(mainOperationsParams.getPaths() != null) {
+                        for(String path:mainOperationsParams.getPaths()) { //берем именно не полный список объектов (paths), а mainOperationsParams.getPaths() - список выбранных объктов
+                            if(stop) {
+                                return false;
+                            }
+                            if (mainOperationsParams.getDistFile().equals(path)) {
+                                status = MainOperationsConstants.ERROR;
+                                return false;
+                            }
+                        }
+                    } else {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+
+        } catch (Exception e) {
+            Log.e("runPreCopyMoveChecks", null, e);
+        }
+
+        status = MainOperationsConstants.ERROR;
+        return false;
+    }
+
     //копирование и перемещение
     private void copy_move(ArrayList<String> paths, String distPath, int action) {
         boolean wasRemount = false;
@@ -378,48 +494,12 @@ public class MainOperations {
         Map<String, String> forRename = new HashMap<String, String>();
 
         try {
-            //вычисляем размер копируемых объектов и сравниваем его с оствшимся местом в distPath
-            //работать корректно будет только для объктов доступных на чтение (системная папка может не определиться как папка и ее размер будет равен 0)
-            long totalSize=0;
 
-            for(String path:mainOperationsParams.getPaths()) { //берем именно не полный список объектов (paths), а mainOperationsParams.getPaths() - список выбранных объктов
-                if(stop) {
-                    return;
-                }
-                if(new File(path).isFile()) {
-                    totalSize+=mainOperationsTools.getObjectSize(path, true);
-                } else {
-                    totalSize+=mainOperationsTools.getObjectSize(path, false);
-                }
-            }
-
-            Log.w("totalSize", Long.toString(totalSize));
-
-            long freeSpace = mainOperationsTools.getFreeSpaceOnMountPoint(distPath);
-            Log.w("totalSize", Long.toString(freeSpace));
-
-            if(totalSize > freeSpace) {
-                status = MainOperationsConstants.NO_SPACE_IN_TARGET;
+            //если массив путей пустой - выходим с ошибкой
+            if(paths.isEmpty()) {
+                status = MainOperationsConstants.ERROR;
                 return;
             }
-
-
-            //проверяем на копирование в себя
-            if(!mainOperationsParams.isAllowInselfCopy()) {
-                //если хотя бы один из копируемых объектов (mainOperationsParams.getPaths()) целиком содержит текущий путь - блокируем копирование
-                for (String path : paths) {
-                    if (distPath.equals(path)) {
-                        status = MainOperationsConstants.ERROR;
-                        stop = true;
-                        break;
-                    }
-                }
-            }
-
-            if (stop) {
-                return;
-            }
-
 
             //forRename = new ArrayList<String>();
             forDelete = new ArrayList<String>();
