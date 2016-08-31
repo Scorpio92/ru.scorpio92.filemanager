@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import ru.scorpio92.arch.Zip;
 import ru.scorpio92.filemanager.Main.Adapters.FileListAdapter;
 import ru.scorpio92.filemanager.Main.Types.*;
-import ru.scorpio92.filemanager.Main.Types.Object;
+import ru.scorpio92.io.Types.Object;
 import ru.scorpio92.filemanager.Main.UI.DialogPresenter;
 import ru.scorpio92.filemanager.Main.Utils.SearchUtils;
 import ru.scorpio92.io.MainOperations;

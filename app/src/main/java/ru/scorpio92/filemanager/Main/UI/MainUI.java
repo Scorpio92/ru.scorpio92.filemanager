@@ -36,7 +36,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import ru.scorpio92.filemanager.Main.Types.*;
-import ru.scorpio92.filemanager.Main.Types.Object;
+import ru.scorpio92.io.Types.Object;
 import ru.scorpio92.filemanager.Main.UI.Intro.Intro;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Terminal.Terminal;

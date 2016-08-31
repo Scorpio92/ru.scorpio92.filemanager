@@ -1,4 +1,4 @@
-package ru.scorpio92.filemanager.Main.Types;
+package ru.scorpio92.io.Types;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

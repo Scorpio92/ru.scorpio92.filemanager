@@ -5,13 +5,15 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import ru.scorpio92.io.Types.Object;
+
 /**
  * Created by scorpio92 on 11.08.16.
  */
 public class Dir {
 
     private String path;
-    private ArrayList<Object> objects;
+    private ArrayList<ru.scorpio92.io.Types.Object> objects;
     private ArrayList<Integer> selectedObjects;
     private boolean selectAll;
 

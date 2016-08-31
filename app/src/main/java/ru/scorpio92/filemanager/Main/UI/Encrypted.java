@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +13,9 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import ru.scorpio92.filemanager.Main.Types.*;
-import ru.scorpio92.filemanager.Main.Types.Object;
-import ru.scorpio92.filemanager.Main.Variables.Constants;
+import ru.scorpio92.io.Types.Object;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Main.Adapters.FileListAdapter;
-import ru.scorpio92.filemanager.Main.Utils.SecondUsageUtils;
 import ru.scorpio92.filemanager.Main.Variables.VarStore;
 
 /**

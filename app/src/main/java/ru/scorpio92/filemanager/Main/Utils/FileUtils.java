@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import ru.scorpio92.filemanager.Main.Types.*;
-import ru.scorpio92.filemanager.Main.Types.Object;
+import ru.scorpio92.io.Types.Object;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Main.Variables.Constants;
 import ru.scorpio92.filemanager.Main.Variables.VarStore;

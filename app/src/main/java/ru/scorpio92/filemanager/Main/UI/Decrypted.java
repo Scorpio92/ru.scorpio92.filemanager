@@ -14,8 +14,7 @@ import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import ru.scorpio92.filemanager.Main.Types.*;
-import ru.scorpio92.filemanager.Main.Types.Object;
+import ru.scorpio92.io.Types.Object;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Main.Adapters.FileListAdapter;
 import ru.scorpio92.filemanager.Main.Utils.SecondUsageUtils;
