@@ -24,7 +24,8 @@ public class Object {
     public Object(String path, String type, String date, long size) {
         this.path = path;
         this.type = type;
-        this.date = dateFormat.format(new Date(date));
+        //this.date = dateFormat.format(new Date(date));
+        this.date = date;
         this.size = size;
     }
 

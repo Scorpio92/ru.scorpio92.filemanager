@@ -32,9 +32,13 @@ public class FileUtils {
 
     private static final String GET_SPACE_USAGE_STAT = "BB=BUSYBOX_FOR_REPLACE; $BB df -Ph PATH_FOR_REPLACE | $BB sed 1d | $BB tr -s ' ' | $BB cut -d ' ' -f6,2,3,4"; //в названии точек монтирования пробелов нет, поэтом путь в кавычки не берем иначае не получим инфо по всем разделам
 
-    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls \"/$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
+    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; $BB find \"$PATH/\" ! -path '*/\\.*' -maxdepth 1 -exec $BB stat -c '%n;%s;%z' {} \\; | $BB sed 1d | $BB sed s:.000000000::g | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB sort; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls \"/$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done | $BB sort";
 
-    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls -A \"/$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\" )); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
+    private static final String GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; $BB find \"$PATH/\" -maxdepth 1 -exec $BB stat -c '%n;%s;%z' {} \\; | $BB sed 1d | $BB sed s:.000000000::g | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB sort; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls -A \"/$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done | $BB sort";
+
+    private static final String _GET_ALL_DIR_OBJECTS_AND_TYPES = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls \"/$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
+
+    private static final String _GET_ALL_DIR_OBJECTS_AND_TYPES_WITH_HIDDEN = "BB=BUSYBOX_FOR_REPLACE; PATH=\"PATH_FOR_REPLACE\"; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB ls -A \"/$PATH\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\" )); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do obj=\"$PATH/$obj\"; detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
 
     private static final String GET_OBJECT_RAW_INFO = "BB=BUSYBOX_FOR_REPLACE; OLDIFS=$IFS; IFS=\";\"; arr=(); arr+=($($BB printf '%s\\n' \"PATH_FOR_REPLACE\" | $BB grep \"GREP_STRING_FOR_REPLACE\" | $BB tr -s \"\\n\" \";\")); IFS=$OLDIFS; for obj in \"${arr[@]}\"; do detected=\"false\"; if [ -L \"$obj\" ];then if [ -d \"$obj\" ];then echo \"$obj;ld\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;lf\"; detected=\"true\"; fi; else if [ -d \"$obj\" ];then echo \"$obj;d\"; detected=\"true\"; fi; if [ -f \"$obj\" ];then echo \"$obj;f\"; detected=\"true\"; fi; fi; if [[ \"$detected\" == \"false\" && -e \"$obj\" ]];then echo \"$obj;f\"; fi; done;";
 
@@ -88,16 +92,19 @@ public class FileUtils {
 
             Dir dir = new Dir(path);
 
-            boolean full_date_format = SettingsUtils.getBooleanSettings(VarStore.getAppContext(), Constants.VIEW_FULL_CHANGE_TIME_FORMAT_KEY);
+            //boolean full_date_format = SettingsUtils.getBooleanSettings(VarStore.getAppContext(), Constants.VIEW_FULL_CHANGE_TIME_FORMAT_KEY);
 
-            for (String s:rawList) {
+            for (int i=0; i<rawList.size()/2;i++) {
+
+                String s = rawList.get(i);
                 String[] o_mas = s.split(";");
                 String o = o_mas[0];
-                String type = o_mas[1];
-                File f = new File(o);
+                String type = rawList.get(rawList.size()/2 + i).split(";")[1];
+                long size = 0;
+                String date = o_mas[2];
+                //File f = new File(o);
 
                 Boolean showDirSize = SettingsUtils.getBooleanSettings(VarStore.getAppContext(), Constants.VIEW_SHOW_DIR_SIZE_KEY);
-                long size = 0;
                 if(type.equals(Object.TYPE_DIR) || type.equals(Object.TYPE_SYMLINK_DIR)) {
                     if (showDirSize != null) {
                         if (showDirSize) {
@@ -105,14 +112,13 @@ public class FileUtils {
                         }
                     }
                 } else {
-                    if(f.canRead()) {
-                        size = f.length();
-                    } else {
-                        size = getMainOperationsTools().getObjectSize(o, true);
-                    }
+                    size = Long.parseLong(o_mas[1]);
                 }
 
-                Object object = new Object(o, type, new Date(f.lastModified()).toString(), size, full_date_format);
+
+                //Object object = new Object(o, type, new Date(f.lastModified()).toString(), size, full_date_format);
+                //Log.w("fdsfsd", "obj "+o + " size " + size + " date " + date + " type " +type );
+                Object object = new Object(o, type, date, size);
                 dir.getObjects().add(object);
             }
             long endTime = System.nanoTime();

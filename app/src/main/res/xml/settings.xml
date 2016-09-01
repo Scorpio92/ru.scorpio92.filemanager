@@ -63,7 +63,8 @@
             android:title="@string/settings_view_change_time_with_gmt"
             android:defaultValue="false"
             android:summary="@string/settings_view_change_time_with_gmt_summary"
-            android:key="settings_view_change_time_with_gmt" />
+            android:key="settings_view_change_time_with_gmt"
+            android:enabled="false"/>
 
         <CheckBoxPreference
             android:title="@string/settings_view_show_selected_files_size"
