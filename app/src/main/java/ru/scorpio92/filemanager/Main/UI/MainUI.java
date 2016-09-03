@@ -501,10 +501,25 @@ public class MainUI extends Activity implements Callback {
                                 getVarStore().getDialogPresenter().showOpenTextDialog(path);
                             }
                         }
-                        if (!isText)
-                            if (!SecondUsageUtils.openFile(MainUI.this, path)) {
+                        if (!isText) {
+                            /*if (!SecondUsageUtils.openFile(MainUI.this, path)) {
                                 Toast.makeText(getApplicationContext(), getString(R.string.activityNotFoundException), Toast.LENGTH_LONG).show();
+                            }*/
+                            try {
+                                String packageName = SecondUsageUtils.getPackageForExtension(((VarStore) VarStore.getAppContext()).getMainOperationsTools().getFileExt(path));
+                                if (packageName != null) {
+                                    if (!SecondUsageUtils.openFileWithPackage(MainUI.this, path, packageName)) {
+                                        Toast.makeText(getApplicationContext(), getString(R.string.activityNotFoundException), Toast.LENGTH_LONG).show();
+                                    }
+                                } else {
+                                    if (!SecondUsageUtils.openFile(MainUI.this, path)) {
+                                        Toast.makeText(getApplicationContext(), getString(R.string.activityNotFoundException), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            } catch (Exception e) {
+                                Log.e("try open text with ext app", null, e);
                             }
+                        }
                     }
                 } catch (Exception e) {
                     Log.e("onItemClick", null, e);

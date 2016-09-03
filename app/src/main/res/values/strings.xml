@@ -303,4 +303,5 @@
     <string name="file_operations_open_with">Открыть с помощью</string>
     <string name="apps_list_dialog_tittle">Выберете приложение из списка</string>
     <string name="openWithException">Ошибка при открытии файла</string>
+    <string name="all_apps_list_remember_choice">Запомнить выбор</string>
 </resources>

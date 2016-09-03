@@ -1,11 +1,39 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tableLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:focusableInTouchMode="true" >
 
-    <ListView
+    <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/apps_list"
-        android:layout_gravity="center_horizontal" />
-</LinearLayout>
+        android:paddingLeft="10dp">
+
+        <CheckBox
+            android:layout_width="@dimen/actionbar_panel_width_height"
+            android:layout_height="@dimen/actionbar_panel_width_height"
+            android:text="@string/all_apps_list_remember_choice"
+            android:id="@+id/all_apps_list_remember_choice"
+            android:layout_weight="1" />
+
+    </TableRow>
+
+    <View
+        android:layout_height="2dp"
+        android:background="@color/blue_sky"
+        android:id="@+id/separator2"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/apps_list"
+                android:layout_gravity="center_horizontal" />
+
+    </LinearLayout>
+
+</TableLayout>

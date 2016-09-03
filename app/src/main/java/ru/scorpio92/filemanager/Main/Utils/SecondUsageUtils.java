@@ -230,6 +230,42 @@ public class SecondUsageUtils {
         return false;
     }
 
+    public static void makeAppBinding(String extension, String packageName, String activity) {
+        try {
+
+            ContentValues newValues = new ContentValues();
+            if (getPackageForExtension(extension) == null) {
+                newValues.put(MainDB.APP_BINDING_TABLE_EXTENSION_COLUMN, extension);
+                newValues.put(MainDB.APP_BINDING_TABLE_PACKAGE_NAME_COLUMN, packageName);
+                newValues.put(MainDB.APP_BINDING_TABLE_ACTIVITY_COLUMN, activity);
+                DBUtils.insert_update_delete(MainDB.MAIN_DATABASE_NAME, MainDB.APP_BINDING_TABLE, newValues, null, DBUtils.ACTION_INSERT);
+            } else {
+                String where = MainDB.APP_BINDING_TABLE_EXTENSION_COLUMN + "=" + "'" + extension + "'";
+                newValues.put(MainDB.APP_BINDING_TABLE_PACKAGE_NAME_COLUMN, packageName);
+                newValues.put(MainDB.APP_BINDING_TABLE_ACTIVITY_COLUMN, activity);
+                DBUtils.insert_update_delete(MainDB.MAIN_DATABASE_NAME, MainDB.APP_BINDING_TABLE, newValues, where, DBUtils.ACTION_UPDATE);
+            }
+        } catch (Exception e) {
+            Log.e("makeAppBinding", null, e);
+        }
+    }
+
+    public static String getPackageForExtension(String extension) {
+        try {
+            ArrayList<String> als = new ArrayList<String>();
+            als.add(MainDB.APP_BINDING_TABLE_PACKAGE_NAME_COLUMN);
+            ArrayList<String> result = DBUtils.select_from_db(MainDB.MAIN_DATABASE_NAME, "SELECT * " +
+                    "FROM " + MainDB.APP_BINDING_TABLE +
+                    " WHERE " + MainDB.APP_BINDING_TABLE_EXTENSION_COLUMN + "=" + "'" + extension + "'", als, false);
+            if (!result.isEmpty()) {
+                return result.get(0);
+            }
+        } catch (Exception e) {
+            Log.e("getPackageForExtension", null, e);
+        }
+        return null;
+    }
+
     public static ArrayList<String> getFavoritePaths () {
         ArrayList<String> result = new ArrayList<String>();
         try {

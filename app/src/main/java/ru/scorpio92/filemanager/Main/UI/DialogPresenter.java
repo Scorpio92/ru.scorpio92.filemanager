@@ -1,6 +1,7 @@
 package ru.scorpio92.filemanager.Main.UI;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -35,6 +36,8 @@ import ru.scorpio92.arch.ZipConstants;
 import ru.scorpio92.arch.ZipParams;
 import ru.scorpio92.arch.ZipProgressDialogParams;
 import ru.scorpio92.filemanager.Main.Adapters.AppsListAdapter;
+import ru.scorpio92.filemanager.Main.Types.MainDB;
+import ru.scorpio92.filemanager.Main.Utils.DBUtils;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Main.Types.ObjectProperties;
 import ru.scorpio92.filemanager.Main.Utils.FileUtils;
@@ -1013,12 +1016,13 @@ public class DialogPresenter {
             View dialoglayout = inflater.inflate(R.layout.all_apps, null);
 
             ListView listView = (ListView) dialoglayout.findViewById(R.id.apps_list);
+            final CheckBox checkBox = (CheckBox) dialoglayout.findViewById(R.id.all_apps_list_remember_choice);
 
             alertDialog.setView(dialoglayout);
 
             final ArrayList<String> appsNames = new ArrayList<String>(); //apps labels
             final ArrayList<String> packagesNames = new ArrayList<String>();
-            //final ArrayList<String> appsActivities=new ArrayList<String>();
+            final ArrayList<String> appsActivities=new ArrayList<String>();
             ArrayList<Drawable> appsIcons = new ArrayList<Drawable>();
 
             final PackageManager pm = activityContext.getPackageManager();
@@ -1026,7 +1030,7 @@ public class DialogPresenter {
             for (ResolveInfo temp : SecondUsageUtils.getLauncherCategoryApps(pm)) {
                 appsNames.add(temp.loadLabel(pm).toString());
                 packagesNames.add(temp.activityInfo.packageName);
-                //appsActivities.add(temp.activityInfo.name);
+                appsActivities.add(temp.activityInfo.name);
                 try {
                     appsIcons.add(pm.getApplicationIcon(temp.activityInfo.packageName));
                 } catch (PackageManager.NameNotFoundException e) {
@@ -1043,11 +1047,15 @@ public class DialogPresenter {
             adapter.notifyDataSetChanged();
 
             final String filePath = getVarStore().getCurrentDir().getObjects().get(positionLongPressedFile).path;
+            final String extension = getVarStore().getMainOperationsTools().getFileExt(filePath);
 
             listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     try {
+                        if(checkBox.isChecked()) {
+                            SecondUsageUtils.makeAppBinding(extension, packagesNames.get(i), appsActivities.get(i));
+                        }
                         if (!SecondUsageUtils.openFileWithPackage(activityContext, filePath, packagesNames.get(i))) {
                             Toast.makeText(activityContext, activityContext.getString(R.string.openWithException), Toast.LENGTH_LONG).show();
                         }
@@ -1083,10 +1091,18 @@ public class DialogPresenter {
             alertDialog.setNegativeButton(activityContext.getString(R.string.negative_button),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            /*if(!SecondUsageUtils.openFile(MainUI.this, path)) {
-                                Toast.makeText(getApplicationContext(), getString(R.string.activityNotFoundException), Toast.LENGTH_LONG).show();
-                            }*/
-                            dialog.dismiss();
+                            try {
+                                String packageName = SecondUsageUtils.getPackageForExtension(((VarStore) VarStore.getAppContext()).getMainOperationsTools().getFileExt(path));
+                                if (packageName != null) {
+                                    if (!SecondUsageUtils.openFileWithPackage(activityContext, path, packageName)) {
+                                        Toast.makeText(activityContext, activityContext.getString(R.string.activityNotFoundException), Toast.LENGTH_LONG).show();
+                                    }
+                                }
+                            } catch (Exception e) {
+                                Log.e("try open text with ext app", null, e);
+                            } finally {
+                                dialog.dismiss();
+                            }
                         }
                     });
 

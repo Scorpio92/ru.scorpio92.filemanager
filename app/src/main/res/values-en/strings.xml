@@ -278,4 +278,5 @@
     <string name="file_operations_open_with">Open with</string>
     <string name="apps_list_dialog_tittle">Select app from list</string>
     <string name="openWithException">Opennig file error</string>
+    <string name="all_apps_list_remember_choice">Remember choice</string>
 </resources>
