@@ -4,6 +4,8 @@ import android.content.ActivityNotFoundException;
 import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.text.ClipboardManager;
 import android.util.Log;
@@ -14,6 +16,8 @@ import android.webkit.MimeTypeMap;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Textviewer.TextViewer;
@@ -170,6 +174,20 @@ public class SecondUsageUtils {
             Log.e("openTextFile", null, e);
         }
         return false;
+    }
+
+    public static List<ResolveInfo> getLauncherCategoryApps(PackageManager pm) {
+        List<ResolveInfo> appList = new ArrayList<ResolveInfo>();
+        try {
+            Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+            mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+            appList = pm.queryIntentActivities(mainIntent, 0);
+            Collections.sort(appList, new ResolveInfo.DisplayNameComparator(pm));
+
+        } catch (Exception e) {
+            Log.e("getLauncherCategoryApps", null, e);
+        }
+        return appList;
     }
 
     //открытие файлов

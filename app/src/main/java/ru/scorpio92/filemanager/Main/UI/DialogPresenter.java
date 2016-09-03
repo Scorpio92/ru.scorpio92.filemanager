@@ -938,7 +938,7 @@ public class DialogPresenter {
             alertDialog.setNegativeButton(activityContext.getString(R.string.negative_button),
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            if(getVarStore().getAesInstance()!=null) {
+                            if (getVarStore().getAesInstance() != null) {
                                 getVarStore().getAesInstance().stop();
                             }
                             dialog.cancel();
@@ -1005,64 +1005,62 @@ public class DialogPresenter {
     }
 
     public void showOpenWithDialog(final int positionLongPressedFile) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activityContext);
-        alertDialog.setTitle(activityContext.getString(R.string.apps_list_dialog_tittle));
+        try {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(activityContext);
+            alertDialog.setTitle(activityContext.getString(R.string.apps_list_dialog_tittle));
 
-        LayoutInflater inflater = (LayoutInflater) activityContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View dialoglayout = inflater.inflate(R.layout.all_apps, null);
+            LayoutInflater inflater = (LayoutInflater) activityContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View dialoglayout = inflater.inflate(R.layout.all_apps, null);
 
-        ListView listView = (ListView) dialoglayout.findViewById(R.id.apps_list);
+            ListView listView = (ListView) dialoglayout.findViewById(R.id.apps_list);
 
-        alertDialog.setView(dialoglayout);
+            alertDialog.setView(dialoglayout);
 
-        final ArrayList<String> appsNames=new ArrayList<String>(); //apps labels
-        final ArrayList<String> packagesNames=new ArrayList<String>();
-        final ArrayList<String> appsActivities=new ArrayList<String>();
-        ArrayList<Drawable> appsIcons=new ArrayList<Drawable>();
+            final ArrayList<String> appsNames = new ArrayList<String>(); //apps labels
+            final ArrayList<String> packagesNames = new ArrayList<String>();
+            //final ArrayList<String> appsActivities=new ArrayList<String>();
+            ArrayList<Drawable> appsIcons = new ArrayList<Drawable>();
 
-        final PackageManager pm = activityContext.getPackageManager();
+            final PackageManager pm = activityContext.getPackageManager();
 
-        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
-        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
-
-        List<ResolveInfo> appList = pm.queryIntentActivities(mainIntent, 0);
-        Collections.sort(appList, new ResolveInfo.DisplayNameComparator(pm));
-
-        for (ResolveInfo temp : appList) {
-            appsNames.add(temp.loadLabel(pm).toString());
-            packagesNames.add(temp.activityInfo.packageName);
-            appsActivities.add(temp.activityInfo.name);
-            try {
-                appsIcons.add(pm.getApplicationIcon(temp.activityInfo.packageName));
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-            }
-        }
-
-        AppsListAdapter adapter = new AppsListAdapter(activityContext, appsNames, appsIcons);
-        listView.setAdapter(adapter);
-
-        final AlertDialog dialog = alertDialog.create();
-        dialog.show();
-
-        adapter.notifyDataSetChanged();
-
-        final String filePath = getVarStore().getCurrentDir().getObjects().get(positionLongPressedFile).path;
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            for (ResolveInfo temp : SecondUsageUtils.getLauncherCategoryApps(pm)) {
+                appsNames.add(temp.loadLabel(pm).toString());
+                packagesNames.add(temp.activityInfo.packageName);
+                //appsActivities.add(temp.activityInfo.name);
                 try {
-                    if (!SecondUsageUtils.openFileWithPackage(activityContext, filePath, packagesNames.get(i))) {
-                        Toast.makeText(activityContext, activityContext.getString(R.string.openWithException), Toast.LENGTH_LONG).show();
-                    }
-                } catch (Exception e) {
-                    Log.e("openFile with", null, e);
-                } finally {
-                    dialog.dismiss();
+                    appsIcons.add(pm.getApplicationIcon(temp.activityInfo.packageName));
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
-        });
+
+            AppsListAdapter adapter = new AppsListAdapter(activityContext, appsNames, appsIcons);
+            listView.setAdapter(adapter);
+
+            final AlertDialog dialog = alertDialog.create();
+            dialog.show();
+
+            adapter.notifyDataSetChanged();
+
+            final String filePath = getVarStore().getCurrentDir().getObjects().get(positionLongPressedFile).path;
+
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                    try {
+                        if (!SecondUsageUtils.openFileWithPackage(activityContext, filePath, packagesNames.get(i))) {
+                            Toast.makeText(activityContext, activityContext.getString(R.string.openWithException), Toast.LENGTH_LONG).show();
+                        }
+                    } catch (Exception e) {
+                        Log.e("openFile with", null, e);
+                    } finally {
+                        dialog.dismiss();
+                    }
+                }
+            });
+        } catch (Exception e) {
+            Log.e("showOpenWithDialog", null, e);
+        }
     }
 
     //диалог открытия текстового файла
