@@ -300,4 +300,7 @@
     <string name="settings_view_change_time_with_gmt_summary">Время изменения в формате: yyyy.MM.dd HH:mm:ss GMT</string>
     <string name="file_list_changed_prop">Изменен:</string>
     <string name="file_list_size_prop">Размер:</string>
+    <string name="file_operations_open_with">Открыть с помощью</string>
+    <string name="apps_list_dialog_tittle">Выберете приложение из списка</string>
+    <string name="openWithException">Ошибка при открытии файла</string>
 </resources>

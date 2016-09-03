@@ -192,6 +192,26 @@ public class SecondUsageUtils {
         return false;
     }
 
+    public static Boolean openFileWithPackage(Context activityContext,String path, String packageName) {
+        try {
+            Intent intent = new Intent();
+            intent.setPackage(packageName);
+            //MimeTypeMap myMime = MimeTypeMap.getSingleton();
+            //String mimeType = myMime.getMimeTypeFromExtension(((VarStore) VarStore.getAppContext()).getMainOperationsTools().getFileExt(path));
+            intent.setDataAndType(Uri.fromFile(new File(path)), "*/*");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            try {
+                activityContext.startActivity(intent);
+                return true;
+            } catch (Exception e) {
+                Log.e("openFile with", null, e);
+            }
+        } catch (Exception e) {
+            Log.e("openFile with", null, e);
+        }
+        return false;
+    }
+
     public static ArrayList<String> getFavoritePaths () {
         ArrayList<String> result = new ArrayList<String>();
         try {

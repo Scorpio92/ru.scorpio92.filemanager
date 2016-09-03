@@ -2,9 +2,17 @@ package ru.scorpio92.filemanager.Main.UI;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.ActivityNotFoundException;
+import android.content.ComponentName;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.text.Editable;
@@ -18,6 +26,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
@@ -34,7 +43,10 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
+import ru.scorpio92.filemanager.Main.Adapters.AppsListAdapter;
 import ru.scorpio92.filemanager.Main.Types.*;
 import ru.scorpio92.io.Types.Object;
 import ru.scorpio92.filemanager.Main.UI.Intro.Intro;
@@ -486,7 +498,7 @@ public class MainUI extends Activity implements Callback {
                         for (String s : Constants.TEXT_EXT_MASSIVE) {
                             if (getVarStore().getMainOperationsTools().getFileExt(path).equals(s)) {
                                 isText = true;
-                                showOpenTextDialog(path);
+                                getVarStore().getDialogPresenter().showOpenTextDialog(path);
                             }
                         }
                         if (!isText)
@@ -885,7 +897,7 @@ public class MainUI extends Activity implements Callback {
             PopupMenu popupMenu = new PopupMenu(this, v);
             popupMenu.inflate(R.menu.file_operations);
             Menu menu = popupMenu.getMenu();
-            String filePath = getVarStore().getCurrentDir().getObjects().get(positionLongPressedFile).path;
+            final String filePath = getVarStore().getCurrentDir().getObjects().get(positionLongPressedFile).path;
 
             //пункты меню по архивации
             if(getVarStore().getMainOperationsTools().getFileExt(filePath).equals(Constants.ZIP_EXT)) {
@@ -914,6 +926,7 @@ public class MainUI extends Activity implements Callback {
                 menu.findItem(R.id.file_operations_open_in_textviewer).setVisible(false);
                 menu.findItem(R.id.file_operations_open_in_texteditor).setVisible(false);
                 menu.findItem(R.id.file_operations_encrypt).setVisible(false);
+                menu.findItem(R.id.file_operations_open_with).setVisible(false);
                 //menu.findItem(R.id.file_operations_decrypt).setVisible(false);
             }
 
@@ -923,6 +936,10 @@ public class MainUI extends Activity implements Callback {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     switch (item.getItemId()) {
+
+                        case R.id.file_operations_open_with:
+                            getVarStore().getDialogPresenter().showOpenWithDialog(positionLongPressedFile);
+                            return true;
 
                         case R.id.file_operations_copy:
                             getVarStore().getDialogPresenter().showCopyMoveDialog(positionLongPressedFile, MainOperationsConstants.FILE_OPERATION_COPY);
@@ -1097,42 +1114,6 @@ public class MainUI extends Activity implements Callback {
             }
         } catch (Exception e) {
             Log.e("showMemoryUsage", null, e);
-        }
-    }
-
-    //диалог открытия текстового файла
-    private void showOpenTextDialog(final String path) {
-        try {
-            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
-            alertDialog.setTitle(getString(R.string.opentext_dialog_tittle));
-            alertDialog.setMessage(getString(R.string.opentext_dialog_body));
-
-            alertDialog.setPositiveButton(getString(R.string.ok_button),
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if(!SecondUsageUtils.openTextFile(MainUI.this, path, false)) {
-                                Toast.makeText(getApplicationContext(), getString(R.string.openTextFileException), Toast.LENGTH_LONG).show();
-                            }
-                            dialog.dismiss();
-                        }
-                    });
-
-            alertDialog.setNegativeButton(getString(R.string.negative_button),
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            if(!SecondUsageUtils.openFile(MainUI.this, path)) {
-                                Toast.makeText(getApplicationContext(), getString(R.string.activityNotFoundException), Toast.LENGTH_LONG).show();
-                            }
-                            dialog.dismiss();
-                        }
-                    });
-
-            final AlertDialog dialog = alertDialog.create();
-            dialog.setCancelable(false);
-            dialog.show();
-
-        } catch (Exception e) {
-            Log.e("showOpenTextDialog", null, e);
         }
     }
 

@@ -3,15 +3,23 @@ package ru.scorpio92.filemanager.Main.UI;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
+import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.MimeTypeMap;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -19,11 +27,14 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import ru.scorpio92.arch.Zip;
 import ru.scorpio92.arch.ZipConstants;
 import ru.scorpio92.arch.ZipParams;
 import ru.scorpio92.arch.ZipProgressDialogParams;
+import ru.scorpio92.filemanager.Main.Adapters.AppsListAdapter;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Main.Types.ObjectProperties;
 import ru.scorpio92.filemanager.Main.Utils.FileUtils;
@@ -990,6 +1001,103 @@ public class DialogPresenter {
             });
         } catch (Exception e) {
             Log.e("showEncryptDialog", null, e);
+        }
+    }
+
+    public void showOpenWithDialog(final int positionLongPressedFile) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(activityContext);
+        alertDialog.setTitle(activityContext.getString(R.string.apps_list_dialog_tittle));
+
+        LayoutInflater inflater = (LayoutInflater) activityContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View dialoglayout = inflater.inflate(R.layout.all_apps, null);
+
+        ListView listView = (ListView) dialoglayout.findViewById(R.id.apps_list);
+
+        alertDialog.setView(dialoglayout);
+
+        final ArrayList<String> appsNames=new ArrayList<String>(); //apps labels
+        final ArrayList<String> packagesNames=new ArrayList<String>();
+        final ArrayList<String> appsActivities=new ArrayList<String>();
+        ArrayList<Drawable> appsIcons=new ArrayList<Drawable>();
+
+        final PackageManager pm = activityContext.getPackageManager();
+
+        Intent mainIntent = new Intent(Intent.ACTION_MAIN, null);
+        mainIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+
+        List<ResolveInfo> appList = pm.queryIntentActivities(mainIntent, 0);
+        Collections.sort(appList, new ResolveInfo.DisplayNameComparator(pm));
+
+        for (ResolveInfo temp : appList) {
+            appsNames.add(temp.loadLabel(pm).toString());
+            packagesNames.add(temp.activityInfo.packageName);
+            appsActivities.add(temp.activityInfo.name);
+            try {
+                appsIcons.add(pm.getApplicationIcon(temp.activityInfo.packageName));
+            } catch (PackageManager.NameNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+        AppsListAdapter adapter = new AppsListAdapter(activityContext, appsNames, appsIcons);
+        listView.setAdapter(adapter);
+
+        final AlertDialog dialog = alertDialog.create();
+        dialog.show();
+
+        adapter.notifyDataSetChanged();
+
+        final String filePath = getVarStore().getCurrentDir().getObjects().get(positionLongPressedFile).path;
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                try {
+                    if (!SecondUsageUtils.openFileWithPackage(activityContext, filePath, packagesNames.get(i))) {
+                        Toast.makeText(activityContext, activityContext.getString(R.string.openWithException), Toast.LENGTH_LONG).show();
+                    }
+                } catch (Exception e) {
+                    Log.e("openFile with", null, e);
+                } finally {
+                    dialog.dismiss();
+                }
+            }
+        });
+    }
+
+    //диалог открытия текстового файла
+    public void showOpenTextDialog(final String path) {
+        try {
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(activityContext);
+            alertDialog.setTitle(activityContext.getString(R.string.opentext_dialog_tittle));
+            alertDialog.setMessage(activityContext.getString(R.string.opentext_dialog_body));
+
+            alertDialog.setPositiveButton(activityContext.getString(R.string.ok_button),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            if(!SecondUsageUtils.openTextFile(activityContext, path, false)) {
+                                Toast.makeText(activityContext, activityContext.getString(R.string.openTextFileException), Toast.LENGTH_LONG).show();
+                            }
+                            dialog.dismiss();
+                        }
+                    });
+
+            alertDialog.setNegativeButton(activityContext.getString(R.string.negative_button),
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            /*if(!SecondUsageUtils.openFile(MainUI.this, path)) {
+                                Toast.makeText(getApplicationContext(), getString(R.string.activityNotFoundException), Toast.LENGTH_LONG).show();
+                            }*/
+                            dialog.dismiss();
+                        }
+                    });
+
+            final AlertDialog dialog = alertDialog.create();
+            dialog.setCancelable(false);
+            dialog.show();
+
+        } catch (Exception e) {
+            Log.e("showOpenTextDialog", null, e);
         }
     }
 
