@@ -1,6 +1,10 @@
 package ru.scorpio92.filemanager.Main.Adapters;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +20,22 @@ import java.util.HashMap;
 import java.util.Map;
 
 
+import ru.scorpio92.filemanager.Main.Types.Callback;
 import ru.scorpio92.filemanager.R;
 import ru.scorpio92.filemanager.Main.UI.MainUI;
 import ru.scorpio92.filemanager.Main.Utils.SettingsUtils;
 import ru.scorpio92.filemanager.Main.Variables.Constants;
 import ru.scorpio92.filemanager.Main.Variables.VarStore;
+import ru.scorpio92.view.ImageViewScrLoader;
 
 /**
  * Created by scorpio92 on 29.02.16.
  */
-public class FileListAdapter extends BaseAdapter {
+public class FileListAdapter extends BaseAdapter implements ImageViewScrLoader.Callback {
     private Context context;
     private VarStore varStore;
     Map<String, Integer> map = new HashMap<String, Integer>();
+    Map<Integer, Bitmap> images = new HashMap<Integer, Bitmap>();
     private Boolean showDirSize, showFileSize, showChangeTime;
 
     /*public boolean ready = false;
@@ -134,6 +141,30 @@ public class FileListAdapter extends BaseAdapter {
             if (fileType.equals(Constants.OBJECT_TYPE_SYMLINK_DIR)) {
                 imageView.setImageResource(map.get("symlink_dir_icon"));
             }
+
+            /*String ext = varStore.getMainOperationsTools().getFileExt(strPath);
+            if(ext.equals("png") || ext.equals("jpg") || ext.equals("JPG")) {
+                if(images.containsKey(position)) {
+                    imageView.setImageBitmap(images.get(position));
+                    Log.w("test", "get bitmap for " + Integer.toString(position));
+                } else {
+                    imageView.setBackgroundColor(Color.BLACK);
+                    ImageViewScrLoader imageViewScrLoader = new ImageViewScrLoader(context, imageView, strPath);
+                    imageViewScrLoader.setAdjustViewBounds(108, 108);
+                    imageViewScrLoader.registerCallback(this);
+                    imageViewScrLoader.setID(position);
+                    imageViewScrLoader.loadScr();
+                    Log.w("test", "set bitmap for " + Integer.toString(position));
+                }
+            } else {
+                if (fileType.equals(Constants.OBJECT_TYPE_FILE)) {
+                    imageView.setImageResource(map.get("file_icon"));
+                }
+                if (fileType.equals(Constants.OBJECT_TYPE_SYMLINK_FILE)) {
+                    imageView.setImageResource(map.get("symlink_file_icon"));
+                }
+            }*/
+
             if (fileType.equals(Constants.OBJECT_TYPE_FILE)) {
                 imageView.setImageResource(map.get("file_icon"));
             }
@@ -184,7 +215,8 @@ public class FileListAdapter extends BaseAdapter {
     public void notifyDataSetChanged() {
         //ready = false;
         clearShowParams(); //при каждом обновлении списка очищаем параметры отображения чтобы подхватились свежие данные из настроек
-        //Log.w("notifyDataSetChanged", varStore.getCurrentDir().getObjects().get(0).path);
+        //Log.w("notifyDataSetChanged", "!!");
+        images.clear();
         super.notifyDataSetChanged();
         ///ready = true;
         /*if(listener != null) {
@@ -211,4 +243,10 @@ public class FileListAdapter extends BaseAdapter {
         }
     }
 
+    @Override
+    public void onDecodeFinished(int id, ImageView imageView, Bitmap bitmap) {
+        Log.w("onDecodeFinished", Integer.toString(id));
+        imageView.setImageBitmap(bitmap);
+        images.put(id, bitmap);
+    }
 }
