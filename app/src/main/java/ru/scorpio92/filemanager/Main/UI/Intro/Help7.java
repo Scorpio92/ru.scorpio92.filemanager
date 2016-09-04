@@ -20,7 +20,7 @@ public class Help7 extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.help7, container, false);
-        new ImageViewScrLoader(getActivity(), (ImageView) v.findViewById(R.id.intro7_img), R.drawable.intro_7).loadScr();
+        new ImageViewScrLoader(getActivity(), (ImageView) v.findViewById(R.id.intro7_img), R.drawable.intro7).loadScr();
         return v;
     }
 }

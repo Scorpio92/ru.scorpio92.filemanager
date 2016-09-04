@@ -251,7 +251,7 @@
     <string name="work_files_menu_crypto">Encryption</string>
     <string name="work_files_menu_exit">Close</string>
     <string name="zip_dialog_compress_fast">Minimum (vey fast)</string>
-    <string name="zip_dialog_compress_max">Minimum (vey fast)</string>
+    <string name="zip_dialog_compress_max">Maximum (long)</string>
     <string name="zip_dialog_compress_no">Without compression</string>
     <string name="zip_dialog_compress_normal">Normal</string>
     <string name="zip_dialog_encrypt_standart">Standart</string>
