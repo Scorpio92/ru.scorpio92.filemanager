@@ -22,7 +22,7 @@ public class Help2 extends Fragment {
 
         Log.w("Help2", "onCreateView");
         View v = inflater.inflate(R.layout.help2, container, false);
-        new ImageViewScrLoader(getActivity(), (ImageView) v.findViewById(R.id.intro2_img), R.drawable.intro2).loadScr();
+        new ImageViewScrLoader(getActivity(), (ImageView) v.findViewById(R.id.intro2_img), R.drawable.intro_2).loadScr();
         return v;
     }
 

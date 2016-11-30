@@ -21,7 +21,7 @@ public class Help3 extends Fragment {
                              Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.help3, container, false);
-        new ImageViewScrLoader(getActivity(), (ImageView) v.findViewById(R.id.intro3_img), R.drawable.intro3).loadScr();
+        new ImageViewScrLoader(getActivity(), (ImageView) v.findViewById(R.id.intro3_img), R.drawable.intro_3).loadScr();
         return v;
     }
 }

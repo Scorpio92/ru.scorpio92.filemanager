@@ -29,8 +29,8 @@ public class WorkFiles extends FragmentActivity {
     private ActionBar actionBar;
     private ActionBar.TabListener tabListener;
 
-    public static FileListAdapter fla0; //адаптер первой вкладки. устанавливается при создании фрагмента
-    public static FileListAdapter fla1; //адаптер второй вкладки. устанавливается при создании фрагмента
+    public static FileListAdapter fla0 = null; //адаптер первой вкладки. устанавливается при создании фрагмента
+    public static FileListAdapter fla1 = null; //адаптер второй вкладки. устанавливается при создании фрагмента
     private static int selectedItem=0; //номер текущей(выбранной) вкладки
     private int mode = WorkFilesTabPagerAdapter.ARCH_MODE; //текущий режим просмотра: Архивы по умолчанию
     private String old_dir; //директория из котороый была вызвана активити и которой нужно будет вернуться после
@@ -226,10 +226,12 @@ public class WorkFiles extends FragmentActivity {
                         @Override
                         public void run() {
                             if (selectedItem == 0) {
-                                fla0.notifyDataSetChanged();
+                                if (fla0 != null)
+                                    fla0.notifyDataSetChanged();
                             }
                             if (selectedItem == 1) {
-                                fla1.notifyDataSetChanged();
+                                if (fla1 != null)
+                                    fla1.notifyDataSetChanged();
                             }
                         }
                     });
